@@ -1,87 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Security Alert</title>
-  <style>
-    body {
-      background-color: #f8d7da;
-      color: #721c24;
-      font-family: Arial, sans-serif;
-      padding: 0;
-      margin: 0;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock Your Earning Potential Today!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global & Reset */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #e0eafc, #cfdef3); /* Subtle gradient background */
+            min-height: 100vh;
+            padding: 0; /* Remove body padding, let container handle it by default */
+            box-sizing: border-box;
+            color: #333;
+        }
 
-    .warning-box {
-      background-color: #fff3cd;
-      border: 2px solid #f5c6cb;
-      padding: 20px;
-      max-width: 500px;
-      margin: 100px auto;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      border-radius: 10px;
-    }
+        .container {
+            max-width: 768px; /* Increased max-width for fuller page */
+            width: 90%; /* Set width to 90% of viewport */
+            margin: 15px auto; /* Adjusted: Reduced top/bottom margin to expand vertically */
+            background-color: #ffffff;
+            /* Default desktop styling for border-radius and box-shadow */
+            border-radius: 0; /* Confirmed: No rounded corners as requested */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Keep shadow for desktop */
+            padding: 30px 15px; /* Confirmed: Reduced horizontal padding for image expansion */
+            text-align: center;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            min-height: calc(100vh - 30px); /* Adjusted: Account for new margin */
+        }
 
-    .warning-title {
-      font-size: 24px;
-      font-weight: bold;
-      color: #d8000c;
-      margin-bottom: 15px;
-    }
+        /* Header (mimicking mobile status bar) */
+        .mobile-status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f8f9fa; /* Lighter shade */
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            color: #555;
+            font-size: 0.9em;
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow for status bar */
+            z-index: 1;
+        }
+        .mobile-status-bar .time {
+            margin-right: auto;
+            font-weight: 600;
+            font-size: 1.0em;
+        }
+        .mobile-status-bar .icons span {
+            margin-left: 10px;
+            color: #777;
+        }
 
-    .warning-msg {
-      font-size: 16px;
-      margin-bottom: 25px;
-    }
+        /* Main Content Styling */
+        .content-area {
+            margin-top: 40px; /* Space for the status bar */
+        }
 
-    .timer {
-      font-size: 18px;
-      color: red;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+        .content-area h1 {
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin-bottom: 10px; /* Reduced margin for sub-headline */
+            line-height: 1.3;
+            font-weight: 700;
+        }
 
-    .btn {
-      background-color: #d8000c;
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 5px;
-      font-size: 18px;
-      cursor: pointer;
-      text-decoration: none;
-      animation: pulse 1.5s infinite;
-    }
+        .content-area .sub-headline {
+            font-size: 1.1em;
+            color: #555;
+            margin-top: 0;
+            margin-bottom: 15px; /* Adjusted: Reduced space below sub-headline */
+            font-weight: 600;
+        }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(216,0,12, 0.7); }
-      70% { box-shadow: 0 0 0 10px rgba(216,0,12, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(216,0,12, 0); }
-    }
-  </style>
+        /* Image Styling */
+        .content-area img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px; /* Adjusted: Reduced space above image */
+            margin-bottom: 20px; /* Adjusted: Reduced space below image */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eee;
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            display: inline-block;
+            background-color: #28a745;
+            color: #fff;
+            padding: 15px 35px; /* Kept generous padding for "padded" look */
+            font-size: 1.3em;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+            border: none;
+            cursor: pointer;
+            /* Removed 'width: 75%;' to make it less "long" and width determined by content/max-width */
+            max-width: 320px; /* Max width remains to cap size */
+            margin: 0 auto 25px auto; /* Adjusted: Reduced bottom margin for desktop button */
+            position: relative;
+            overflow: hidden;
+
+            /* Breathing animation */
+            animation: breathe 2s ease-in-out infinite;
+
+            /* Shining animation */
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -75%;
+                width: 50%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: skewX(-20deg);
+                animation: shine 1.5s infinite;
+                animation-delay: 1s;
+            }
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+            animation-play-state: paused;
+        }
+
+        /* Breathing Animation */
+        @keyframes breathe {
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3); }
+            50% { transform: scale(1.02); box-shadow: 0 8px 20px rgba(40, 167, 69, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3); }
+        }
+
+        /* Shining Animation */
+        @keyframes shine {
+            0% { left: -75%; }
+            50% { left: 100%; }
+            100% { left: -75%; }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 500px) {
+            body {
+                padding: 10px; /* Adjusted: Reduced body padding to expand container on mobile */
+            }
+            .container {
+                padding: 20px 10px; /* Confirmed: Reduced horizontal padding for mobile image expansion */
+                width: 100%; /* Take 100% of the padded body content area */
+                margin: 0 auto; /* Center within the padded body */
+                border-radius: 0; /* Confirmed: No rounded corners for mobile */
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Re-add shadow for mobile */
+                min-height: calc(100vh - 20px); /* Adjusted: Account for new body padding */
+            }
+            .mobile-status-bar {
+                /* No border-radius changes needed, as container is already 0 */
+            }
+            .content-area h1 {
+                font-size: 1.8em;
+                margin-bottom: 10px;
+            }
+            .content-area .sub-headline {
+                font-size: 1em;
+                margin-bottom: 15px; /* Consistent with desktop */
+            }
+            .btn-primary {
+                font-size: 1.1em;
+                padding: 12px 25px; /* Kept generous padding for "padded" look */
+                /* Removed 'width: 75%;' for mobile as well */
+                margin: 0 auto 20px auto; /* Adjusted: Increased bottom margin for mobile button */
+            }
+            .content-area img {
+                margin-top: 15px; /* Adjusted for mobile */
+                margin-bottom: 15px; /* Adjusted for mobile */
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="warning-box">
-    <div class="warning-title">⚠️ Security Warning</div>
-    <div class="warning-msg">
-      Your IP address is exposed and unprotected.<br>
-      Hackers and trackers can see everything you do online.
-    </div>
-    <div class="timer">Secure Your Device in: <span id="countdown">00:29</span></div>
-    <a class="btn" href="https://your-vpn-offer-link.com" target="_blank">Protect Now – Free Download</a>
-  </div>
+    <div class="container">
+        <div class="mobile-status-bar">
+            <span class="time" id="realTimeClock"></span>
+            <div class="icons">
+                <span>&#x1F55C;</span> </div>
+        </div>
 
-  <script>
-    // Simple countdown timer
-    let timeLeft = 29;
-    const countdown = document.getElementById('countdown');
-    setInterval(() => {
-      if (timeLeft <= 0) return;
-      timeLeft--;
-      countdown.textContent = `00:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
-    }, 1000);
-  </script>
+        <div class="content-area">
+            <h1>🎉 You've Unlocked Secret Access!</h1>
+<p class="sub-headline">Looks like your browser glitched... and revealed a secret level of the internet.<br>
+Before the bots patch it, <strong>install a VPN</strong> to stay invisible & explore uncensored content.</p>
+
+            <a href="https://zswjk8.short.gy/homepage/error" class="btn-primary">Join Now & Start!</a>
+
+            <img src="https://i.postimg.cc/rwFYS1dV/IMG-20250324-161947-614.jpg" alt="Earnings Dashboard Screenshot">
+
+            <a href="https://zswjk8.short.gy/homepage/error" class="btn-primary">Start Earning Now</a>
+
+        </div>
+    </div>
+    
+    <script>
+        // Real-time clock script
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            const strMinutes = minutes < 10 ? '0' + minutes : minutes;
+            const timeString = hours + ':' + strMinutes + ' ' + ampm;
+            document.getElementById('realTimeClock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+
 </body>
 </html>
