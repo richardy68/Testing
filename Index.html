@@ -58,3 +58,46 @@
       padding: 10px;
       border-radius: 5px;
       font-size: 14px;
+    }
+    .comment {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+    }
+    .comment strong {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="headline">🎉 Airtime Giveaway Alert 🎉</div>
+    <div class="subheadline">You’ve been selected to receive ₦5,000 MTN, Glo, Airtel, or 9mobile airtime!</div>
+    <div class="timer" id="countdown">03:00</div>
+    <p>Tap the button below and follow the steps to claim your reward before time runs out.</p>
+    <button class="cta-btn" onclick="window.location.href='https://your-offer-link.com'">Claim Now</button>
+
+    <div class="comments">
+      <div class="comment"><strong>Chinedu O.:</strong> Wow I just got ₦5k airtime! Thanks 🙏</div>
+      <div class="comment"><strong>Amaka P.:</strong> This really works o. My Glo line loaded instantly!</div>
+      <div class="comment"><strong>Samuel K.:</strong> I almost ignored this, glad I tried 😲</div>
+    </div>
+  </div>
+
+  <script>
+    // Countdown timer
+    let time = 180;
+    const countdownEl = document.getElementById('countdown');
+    const formatTime = (t) => {
+      const mins = String(Math.floor(t / 60)).padStart(2, '0');
+      const secs = String(t % 60).padStart(2, '0');
+      return `${mins}:${secs}`;
+    };
+    const interval = setInterval(() => {
+      time--;
+      countdownEl.textContent = formatTime(time);
+      if (time <= 0) clearInterval(interval);
+    }, 1000);
+  </script>
+</body>
+</html>
