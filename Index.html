@@ -86,12 +86,14 @@
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(6px);
   color: white;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   z-index: 10;
+}
+#overlay.active {
+  display: flex;
 }
 #overlay h1 {
   font-size: 24px;
@@ -149,14 +151,15 @@
       document.getElementById('prelander').style.display = 'none';
       document.getElementById('videoPage').style.display = 'block';
       const video = document.getElementById('videoBg');
+      const overlay = document.getElementById('overlay');
       video.muted = false;
       video.volume = 1;
       video.play();
 
-      // Delay blur + overlay for 40s
+      // Show overlay only after 40 seconds
       setTimeout(() => {
-        document.getElementById('overlay').style.display = 'flex';
-      }, 40000); // 40 seconds
+        overlay.classList.add('active');
+      }, 40000);
     }
 
     function redirectUser() {
