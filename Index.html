@@ -1,135 +1,124 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Are you 18+?</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Verification</title>
   <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: Arial, sans-serif;
+    * {
       margin: 0;
       padding: 0;
-      text-align: center;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      background: black;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    .prelander {
+      background: url('https://i.postimg.cc/v8NJZj43/ebony-bounce-1.webp') no-repeat center center;
+      background-size: cover;
+      width: 100vw;
+      height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      flex-direction: column;
     }
-
-    .circle-img {
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 30px;
-    }
-
-    .circle-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    h2 {
+    .prelander h2 {
+      color: white;
       font-size: 24px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
-
-    .btn {
-      font-size: 18px;
-      padding: 15px 30px;
-      margin: 10px;
-      border-radius: 8px;
-      border: 2px solid white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .btn.yes {
+    .yes-btn {
       background-color: #00cc33;
       color: white;
       border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 8px;
       animation: blink 1s infinite;
-      box-shadow: 0 0 10px #00ff55;
+      cursor: pointer;
     }
-
-    .btn.no {
-      background-color: transparent;
-      color: white;
-    }
-
     @keyframes blink {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.4; }
-    }
+    }#videoPage {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+#videoBg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#overlay {
+  display: none;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+}
+#overlay h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+#overlay p {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+.sign-in-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  font-size: 16px;
+  border-radius: 50px;
+  cursor: pointer;
+}
 
-    #videoContainer {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: black;
-      z-index: 9999;
-    }
-
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
   </style>
 </head>
 <body>
-
-  <!-- AGE CONFIRM SECTION -->
-  <div id="ageGate">
-    <div class="circle-img">
-      <img src="https://i.postimg.cc/v8NJZj43/ebony-bounce-1.webp" alt="18+ Girl" />
-    </div>
-
+  <div class="prelander" id="prelander">
     <h2>Are you 18 or older?</h2>
-
-    <button class="btn yes" onclick="playVideo()">YES</button>
-    <button class="btn no" onclick="goExit()">NO</button>
-  </div>
-
-  <!-- VIDEO CONTAINER -->
-  <div id="videoContainer">
-    <video id="adultVideo" controls autoplay>
+    <button class="yes-btn" onclick="startVideo()">YES</button>
+  </div>  <div id="videoPage">
+    <video id="videoBg" autoplay muted playsinline>
       <source src="https://files.catbox.moe/rgjpnv.mp4" type="video/mp4">
-      Your browser does not support the video tag.
+      Your browser does not support HTML5 video.
     </video>
-  </div>
-
-  <script>
-    function playVideo() {
-      // Hide age gate
-      document.getElementById("ageGate").style.display = "none";
-
-      // Show video
-      const videoWrap = document.getElementById("videoContainer");
-      const video = document.getElementById("adultVideo");
-      videoWrap.style.display = "block";
-
-      // Play video with sound
+    <div id="overlay">
+      <h1>Sensitive content</h1>
+      <p>Sign in to verify your age</p>
+      <button class="sign-in-btn" onclick="redirectUser()">Sign In</button>
+    </div>
+  </div>  <script>
+    function startVideo() {
+      document.getElementById('prelander').style.display = 'none';
+      document.getElementById('videoPage').style.display = 'block';
+      const video = document.getElementById('videoBg');
       video.muted = false;
       video.volume = 1;
       video.play();
 
-      // Optional: redirect after 10 sec
-      // setTimeout(() => {
-      //   window.location.href = "https://your-offer-link.com";
-      // }, 10000);
+      setTimeout(() => {
+        document.getElementById('overlay').style.display = 'flex';
+      }, 40000); // 40 seconds
     }
 
-    function goExit() {
-      window.location.href = "https://www.google.com";
+    function redirectUser() {
+      window.location.href = "https://www.gravelroat.info/click?offer_id=32957&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE";
     }
-  </script>
-
-</body>
+  </script></body>
 </html>
