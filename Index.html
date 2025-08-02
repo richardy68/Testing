@@ -21,12 +21,13 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
+      padding-top: 50px;
     }
     .circle-img {
-      width: 240px;
-      height: 240px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       overflow: hidden;
       margin-bottom: 30px;
@@ -38,28 +39,30 @@
     }
     .prelander h2 {
       color: white;
-      font-size: 24px;
-      margin-bottom: 20px;
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .button-container {
+      display: flex;
+      gap: 20px;
+    }
+    .yes-btn, .no-btn {
+      padding: 18px 40px;
+      font-size: 20px;
+      border-radius: 10px;
+      cursor: pointer;
     }
     .yes-btn {
       background-color: #00cc33;
       color: white;
       border: none;
-      padding: 15px 30px;
-      font-size: 18px;
-      border-radius: 8px;
       animation: blink 1s infinite;
-      cursor: pointer;
     }
     .no-btn {
       background-color: transparent;
       color: white;
       border: 2px solid white;
-      padding: 15px 30px;
-      font-size: 18px;
-      border-radius: 8px;
-      margin-top: 15px;
-      cursor: pointer;
     }
     @keyframes blink {
       0%, 100% { opacity: 1; }
@@ -116,8 +119,10 @@
       <img src="https://i.postimg.cc/v8NJZj43/ebony-bounce-1.webp" alt="18+ Girl">
     </div>
     <h2>Are you 18 or older?</h2>
-    <button class="yes-btn" onclick="startVideo()">YES</button>
-    <button class="no-btn" onclick="goExit()">NO</button>
+    <div class="button-container">
+      <button class="yes-btn" onclick="startVideo()">YES</button>
+      <button class="no-btn" onclick="goExit()">NO</button>
+    </div>
   </div>  <div id="videoPage">
     <video id="videoBg" autoplay muted playsinline loop>
       <source src="https://files.catbox.moe/rgjpnv.mp4" type="video/mp4">
