@@ -83,8 +83,8 @@
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
   color: white;
   flex-direction: column;
   justify-content: center;
@@ -112,6 +112,18 @@
   border-radius: 50px;
   cursor: pointer;
 }
+.live-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: limegreen;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 11;
+}
 
   </style>
 </head>
@@ -126,6 +138,7 @@
       <button class="no-btn" onclick="startVideo()">NO</button>
     </div>
   </div>  <div id="videoPage">
+    <div class="live-icon">LIVE</div>
     <video id="videoBg" autoplay muted playsinline loop>
       <source src="https://files.catbox.moe/rgjpnv.mp4" type="video/mp4">
       Your browser does not support HTML5 video.
@@ -156,10 +169,10 @@
       video.volume = 1;
       video.play();
 
-      // Show overlay only after 40 seconds
+      // Show overlay after 30 seconds
       setTimeout(() => {
         overlay.classList.add('active');
-      }, 40000);
+      }, 30000);
     }
 
     function redirectUser() {
