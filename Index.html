@@ -1,182 +1,66 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Age Verification</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body, html {
-      height: 100%;
-      background: black;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
-    .prelander {
-      background: black;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      padding-top: 100px;
-    }
-    .circle-img {
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 40px;
-    }
-    .circle-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .prelander h2 {
-      color: white;
-      font-size: 40px;
-      margin-bottom: 40px;
-      text-align: center;
-    }
-    .button-container {
-      display: flex;
-      gap: 25px;
-    }
-    .yes-btn, .no-btn {
-      padding: 20px 50px;
-      font-size: 22px;
-      border-radius: 12px;
-      cursor: pointer;
-    }
-    .yes-btn {
-      background-color: #00cc33;
-      color: white;
-      border: none;
-      animation: blink 1s infinite;
-    }
-    .no-btn {
-      background-color: transparent;
-      color: white;
-      border: 2px solid white;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }#videoPage {
-  display: none;
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-}
-#videoBg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-#overlay {
-  display: none;
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(12px);
-  color: white;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  z-index: 10;
-}
-#overlay.active {
-  display: flex;
-}
-#overlay h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-#overlay p {
-  font-size: 18px;
-  margin-bottom: 25px;
-}
-.sign-in-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 15px 25px;
-  font-size: 16px;
-  border-radius: 50px;
-  cursor: pointer;
-}
-.live-icon {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: limegreen;
-  color: white;
-  padding: 5px 12px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: bold;
-  z-index: 11;
-}
-
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MTN Trivia Giveaway</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="prelander" id="prelander">
-    <div class="circle-img">
-      <img src="https://i.postimg.cc/v8NJZj43/ebony-bounce-1.webp" alt="18+ Girl">
+<body class="bg-yellow-50 text-gray-900 font-sans">
+  <div class="min-h-screen flex flex-col justify-between items-center px-4 py-6">
+    
+    <!-- Header -->
+    <div class="text-center">
+      <h1 class="text-3xl font-bold text-yellow-600">🎉 MTN TRIVIA GIVEAWAY</h1>
+      <p class="mt-2 text-lg">Win a <span class="text-red-600 font-semibold">Free iPhone</span>, <span class="text-green-600 font-semibold">Cash</span>, <span class="text-blue-600 font-semibold">Airtime</span> & <span class="text-purple-600 font-semibold">200GB Data</span></p>
     </div>
-    <h2>Are you 18 or older?</h2>
-    <div class="button-container">
-      <button class="yes-btn" onclick="startVideo()">YES</button>
-      <button class="no-btn" onclick="startVideo()">NO</button>
+
+    <!-- Countdown -->
+    <div class="bg-white shadow-md rounded-lg p-4 my-4 text-center w-full max-w-md">
+      <p class="text-sm text-gray-600 mb-2">Offer ends in:</p>
+      <div id="countdown" class="text-2xl font-bold text-red-600">00:29</div>
     </div>
-  </div>  <div id="videoPage">
-    <div class="live-icon">LIVE</div>
-    <video id="videoBg" autoplay muted playsinline loop>
-      <source src="https://files.catbox.moe/rgjpnv.mp4" type="video/mp4">
-      Your browser does not support HTML5 video.
-    </video>
-    <div id="overlay">
-      <h1>Sensitive content</h1>
-      <p>Sign in to verify your age</p>
-      <button class="sign-in-btn" onclick="redirectUser()">Sign In</button>
+
+    <!-- Rewards -->
+    <div class="bg-white shadow rounded-lg p-4 text-left w-full max-w-md space-y-2">
+      <p class="font-semibold text-lg">You could win:</p>
+      <ul class="list-disc list-inside text-base text-gray-800">
+        <li>📱 Brand New iPhone</li>
+        <li>💵 Up to ₦100,000 Cash</li>
+        <li>📶 48GB – 200GB Free Data</li>
+        <li>📞 MTN Airtime Bonuses</li>
+      </ul>
     </div>
-  </div>  <script>
-    // Back button trap — persistent
-    let trapCount = 0;
-    for (let i = 0; i < 10; i++) {
-      history.pushState(null, '', location.href);
-    }
-    window.onpopstate = function () {
-      trapCount++;
-      alert("⚠️ Access denied. Confirm your age to continue.");
-      history.pushState(null, '', location.href);
-    };
 
-    function startVideo() {
-      document.getElementById('prelander').style.display = 'none';
-      document.getElementById('videoPage').style.display = 'block';
-      const video = document.getElementById('videoBg');
-      const overlay = document.getElementById('overlay');
-      video.muted = false;
-      video.volume = 1;
-      video.play();
+    <!-- Call to Action -->
+    <a href="#get-offer" class="mt-6 inline-block bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg text-lg animate-pulse">
+      🎁 Get Offer Now
+    </a>
 
-      // Show overlay after 30 seconds
-      setTimeout(() => {
-        overlay.classList.add('active');
-      }, 30000);
-    }
+    <!-- Fake Live Feed (Optional) -->
+    <div class="mt-6 text-sm text-gray-600 text-center">
+      <p>✅ James O. (Lagos) just won 100GB Data</p>
+      <p>✅ Adaobi E. (PH) claimed ₦50,000 cash</p>
+    </div>
 
-    function redirectUser() {
-      window.location.href = "https://www.gravelroat.info/click?offer_id=32957&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE";
-    }
-  </script></body>
+    <!-- Footer -->
+    <div class="text-xs text-gray-400 mt-6 text-center">
+      *MTN Trivia is open to select users. T&Cs apply.
+    </div>
+  </div>
+
+  <!-- Countdown Script -->
+  <script>
+    let timer = 29;
+    const countdownEl = document.getElementById('countdown');
+    const interval = setInterval(() => {
+      countdownEl.textContent = `00:${timer < 10 ? '0' : ''}${timer}`;
+      if (timer <= 0) {
+        clearInterval(interval);
+        countdownEl.textContent = "Expired!";
+      }
+      timer--;
+    }, 1000);
+  </script>
+</body>
 </html>
