@@ -2,65 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MTN Trivia Giveaway</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Would You Date Me?</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+    }
+    .profile-card {
+      max-width: 420px;
+      width: 100%;
+      margin: 20px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .profile-photo {
+      width: 100%;
+      height: 360px;
+      background-image: url('https://i.postimg.cc/cJ2b58fw/RDT-20250803-0259265921380149435635900.webp');
+      background-size: cover;
+      background-position: center;
+    }
+    .info {
+      padding: 22px;
+      text-align: center;
+    }
+    .name {
+      font-size: 22px;
+      font-weight: 700;
+      color: #222;
+    }
+    .location {
+      color: #777;
+      margin-top: 4px;
+      font-size: 14px;
+    }
+    .question {
+      margin: 20px 0;
+      font-size: 20px;
+      color: #444;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 15px;
+    }
+    .btn {
+      padding: 12px 28px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .btn-yes {
+      background: #ff3366;
+      color: white;
+    }
+    .btn-no {
+      background: #ddd;
+      color: #333;
+    }
+    .likes {
+      font-size: 14px;
+      color: #888;
+      margin-top: 10px;
+    }
+  </style>
 </head>
-<body class="bg-yellow-50 text-gray-900 font-sans">
-  <div class="min-h-screen flex flex-col justify-between items-center px-4 py-6">
-    
-    <!-- Header -->
-    <div class="text-center">
-      <h1 class="text-3xl font-bold text-yellow-600">🎉 MTN TRIVIA GIVEAWAY</h1>
-      <p class="mt-2 text-lg">Win a <span class="text-red-600 font-semibold">Free iPhone</span>, <span class="text-green-600 font-semibold">Cash</span>, <span class="text-blue-600 font-semibold">Airtime</span> & <span class="text-purple-600 font-semibold">200GB Data</span></p>
-    </div>
+<body>
 
-    <!-- Countdown -->
-    <div class="bg-white shadow-md rounded-lg p-4 my-4 text-center w-full max-w-md">
-      <p class="text-sm text-gray-600 mb-2">Offer ends in:</p>
-      <div id="countdown" class="text-2xl font-bold text-red-600">00:29</div>
-    </div>
-
-    <!-- Rewards -->
-    <div class="bg-white shadow rounded-lg p-4 text-left w-full max-w-md space-y-2">
-      <p class="font-semibold text-lg">You could win:</p>
-      <ul class="list-disc list-inside text-base text-gray-800">
-        <li>📱 Brand New iPhone</li>
-        <li>💵 Up to ₦100,000 Cash</li>
-        <li>📶 48GB – 200GB Free Data</li>
-        <li>📞 MTN Airtime Bonuses</li>
-      </ul>
-    </div>
-
-    <!-- Call to Action -->
-    <a href="#get-offer" class="mt-6 inline-block bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg text-lg animate-pulse">
-      🎁 Get Offer Now
-    </a>
-
-    <!-- Fake Live Feed (Optional) -->
-    <div class="mt-6 text-sm text-gray-600 text-center">
-      <p>✅ James O. (Lagos) just won 100GB Data</p>
-      <p>✅ Adaobi E. (PH) claimed ₦50,000 cash</p>
-    </div>
-
-    <!-- Footer -->
-    <div class="text-xs text-gray-400 mt-6 text-center">
-      *MTN Trivia is open to select users. T&Cs apply.
+  <div class="profile-card">
+    <div class="profile-photo"></div>
+    <div class="info">
+      <div class="name">Mimi, 23</div>
+      <div class="location">📍 Lagos, Nigeria</div>
+      <div class="question">Would you date me? 😘</div>
+      <div class="buttons">
+        <button class="btn btn-yes" onclick="window.location.href='https://your-offer-link.com'">Yes ❤️</button>
+        <button class="btn btn-no" onclick="alert('Maybe next time 😢')">No</button>
+      </div>
+      <div class="likes">💖 1,204 people liked this</div>
     </div>
   </div>
 
-  <!-- Countdown Script -->
-  <script>
-    let timer = 29;
-    const countdownEl = document.getElementById('countdown');
-    const interval = setInterval(() => {
-      countdownEl.textContent = `00:${timer < 10 ? '0' : ''}${timer}`;
-      if (timer <= 0) {
-        clearInterval(interval);
-        countdownEl.textContent = "Expired!";
-      }
-      timer--;
-    }, 1000);
-  </script>
 </body>
 </html>
