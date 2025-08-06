@@ -78,9 +78,9 @@
       height: 100%;
       background-color: rgba(0, 0, 0, 0.95);
       z-index: 1000;
-      display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
     }
     .loader {
       border: 8px solid #333;
@@ -89,10 +89,17 @@
       width: 60px;
       height: 60px;
       animation: spin 1s linear infinite;
+      margin-bottom: 20px;
     }
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
+    }
+    .loading-text {
+      font-size: 16px;
+      color: #ccc;
+      text-align: center;
+      line-height: 1.5;
     }
     .popup {
       display: none;
@@ -166,6 +173,7 @@
 
   </div>  <div class="loading-screen" id="loading">
     <div class="loader"></div>
+    <div class="loading-text" id="loadingMessage">Checking eligibility...</div>
   </div>  <div class="popup" id="result">
     <div class="popup-box">
       <h2>Sorry</h2>
@@ -183,6 +191,23 @@
         return;
       }
       document.getElementById('loading').style.display = 'flex';
+
+      const messages = [
+        "Checking eligibility...",
+        "Verifying mobile number...",
+        "Confirming network match...",
+        "Finalizing eligibility...",
+        "Almost done...",
+        "You qualified!"
+      ];
+
+      let index = 0;
+      const interval = setInterval(() => {
+        document.getElementById("loadingMessage").innerText = messages[index];
+        index++;
+        if (index >= messages.length) clearInterval(interval);
+      }, 1000);
+
       setTimeout(() => {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('result').style.display = 'flex';
