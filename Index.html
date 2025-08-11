@@ -256,9 +256,38 @@ function startCheck() {
   }, 15000); // now 15s
 }
 
-function redirectToOffer() {
-  const number = document.getElementById('msisdn').value.trim();
-  window.location.href = `https://zqrjvlx.one/cl/ff5dced45d5bbbfa?msisdn=${number}`;
+async function redirectToOffer() {
+  const apiToken = '55355b912bdc12';
+  const apiUrl = `https://ipinfo.io/json?token=${apiToken}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) throw new Error('API request failed');
+
+    const data = await response.json();
+    const org = data.org || '';
+    const orgLower = org.toLowerCase();
+
+    const offers = {
+      mtn: 'https://www.gravelroat.info/click?offer_id=32714&pub_id=269631',
+      airtel: 'https://www.gravelroat.info/click?offer_id=27397&pub_id=269631',
+      glo: 'https://www.gravelroat.info/click?offer_id=33250&pub_id=269631',
+      rest: 'https://www.gravelroat.info/click?offer_id=32065&pub_id=269631'
+    };
+
+    if (orgLower.includes('mtn')) {
+      window.location.href = offers.mtn;
+    } else if (orgLower.includes('airtel')) {
+      window.location.href = offers.airtel;
+    } else if (orgLower.includes('glo')) {
+      window.location.href = offers.glo;
+    } else {
+      window.location.href = offers.rest;
+    }
+  } catch (error) {
+    console.error('Error detecting carrier:', error);
+    window.location.href = 'https://www.gravelroat.info/click?offer_id=32065&pub_id=269631';
+  }
 }
 
 // ===== Testimonial Rotation =====
@@ -284,44 +313,6 @@ function showTestimonial() {
 }
 testimonialInterval = setInterval(showTestimonial, 7000);
 setTimeout(showTestimonial, 2000);
-</script>
-
-<!-- Carrier detection and redirect script -->
-<script>
-  (async function() {
-    const apiToken = '55355b912bdc12';
-    const apiUrl = `https://ipinfo.io/json?token=${apiToken}`;
-
-    try {
-      const response = await fetch(apiUrl);
-      if (!response.ok) throw new Error('API request failed');
-
-      const data = await response.json();
-      const org = data.org || '';
-      const orgLower = org.toLowerCase();
-
-      const offers = {
-        mtn: 'https://www.gravelroat.info/click?offer_id=32714&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE',
-        airtel: 'https://www.gravelroat.info/click?offer_id=27397&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE',
-        glo: 'https://www.gravelroat.info/click?offer_id=33250&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE',
-        rest: 'https://www.gravelroat.info/click?offer_id=32065&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE'
-      };
-
-      if (orgLower.includes('mtn')) {
-        window.location.href = offers.mtn;
-      } else if (orgLower.includes('airtel')) {
-        window.location.href = offers.airtel;
-      } else if (orgLower.includes('glo')) {
-        window.location.href = offers.glo;
-      } else {
-        window.location.href = offers.rest;
-      }
-
-    } catch (error) {
-      console.error('Error detecting carrier:', error);
-      window.location.href = 'https://www.gravelroat.info/click?offer_id=32065&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE';
-    }
-  })();
 </script>
 
 </body>
