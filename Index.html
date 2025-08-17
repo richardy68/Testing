@@ -1,206 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Congratulations! You have a chance to win.</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .container {
-            background-color: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            text-align: center;
-            max-width: 450px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .image-container {
-            margin-bottom: 20px;
-        }
-
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        .congrats-text {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .congrats-text h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-            margin-right: 8px;
-        }
-
-        .congrats-text span.emoji {
-            font-size: 24px;
-        }
-
-        p {
-            font-size: 16px;
-            color: #666;
-            line-height: 1.5;
-            margin: 10px 0;
-        }
-
-        .prize-text {
-            font-size: 20px;
-            font-weight: 700;
-            color: #007bff;
-            margin: 10px 0 20px;
-        }
-
-        .timer-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 30px 0 15px;
-        }
-
-        .timer-box {
-            background-color: #ff3b30;
-            color: #fff;
-            font-size: 48px;
-            font-weight: 700;
-            padding: 10px 15px;
-            border-radius: 10px;
-            min-width: 80px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .timer-colon {
-            font-size: 48px;
-            color: #ff3b30;
-            font-weight: 700;
-            margin: 0 10px;
-        }
-
-        .hurry-text {
-            font-size: 14px;
-            color: #ff3b30;
-            font-weight: 500;
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hurry-text .fire-emoji {
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-
-        .continue-button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: 500;
-            border-radius: 50px;
-            width: 100%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 30px;
-        }
-
-        .continue-button:hover {
-            background-color: #0056b3;
-        }
-
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div class="image-container">
-            <img src="https://i.ibb.co/L95sW4y/iphone-16-pro.png" alt="Apple iPhone 16 Pro">
-        </div>
-
-        <div class="congrats-text">
-            <h1>Congratulations!</h1>
-            <span class="emoji">&#127881;</span>
-        </div>
-        <p>You have a chance to win.</p>
-        <p class="prize-text">Apple iPhone 16 Pro</p>
-
-        <p>You have been selected for a chance to win an Apple iPhone 16 Pro. Register before the timer runs out. The sooner you register, the better your chances of winning!</p>
-
-        <div class="timer-container">
-            <div class="timer-box" id="minutes">00</div>
-            <div class="timer-colon">:</div>
-            <div class="timer-box" id="seconds">13</div>
-        </div>
-        <div class="hurry-text">
-            Hurry <span class="fire-emoji">&#128293;</span> before it's over!
-        </div>
-
-        <button class="continue-button">Continue</button>
-    </div>
-
-    <script>
-        // Basic countdown timer functionality
-        const startingMinutes = 13;
-        let time = startingMinutes;
-        const minutesEl = document.getElementById('minutes');
-        const secondsEl = document.getElementById('seconds');
-
-        // Initial setup for the seconds display
-        secondsEl.textContent = time < 10 ? '0' + time : time;
-        minutesEl.textContent = '00';
-
-        const countdown = setInterval(() => {
-            if (time <= 0) {
-                clearInterval(countdown);
-                minutesEl.textContent = '00';
-                secondsEl.textContent = '00';
-                // You can add logic here for what happens when the timer ends
-                return;
-            }
-            time--;
-            
-            const seconds = time;
-            
-            // This is a simplified timer for the visual, not an accurate countdown
-            // to perfectly match the provided image.
-            secondsEl.textContent = seconds < 10 ? '0' + seconds : seconds;
-        }, 1000); // This will decrement the seconds every second, but the minutes won't change as per the original image.
-
-    </script>
-
-</body>
-</html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Congratulations! You have a chance to win.</title>
+     <style>
+         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+ 
+         body {
+             font-family: 'Roboto', sans-serif;
+             background-color: #f0f2f5;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             height: 100vh;
+             margin: 0;
+             padding: 20px;
+             box-sizing: border-box;
+         }
+ 
+         .container {
+             background-color: #ffffff;
+             border-radius: 20px;
+             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+             padding: 30px;
+             text-align: center;
+             max-width: 450px;
+             width: 100%;
+             box-sizing: border-box;
+         }
+ 
+         .image-container {
+             margin-bottom: 20px;
+         }
+ 
+         .image-container img {
+             max-width: 100%;
+             height: auto;
+             border-radius: 10px;
+             display: block;
+             margin-left: auto;
+             margin-right: auto;
+         }
+ 
+         h1 {
+             font-size: 24px;
+             font-weight: 700;
+             color: #333;
+             margin: 0;
+             line-height: 1.2;
+         }
+ 
+         .congrats-text {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             margin-bottom: 10px;
+         }
+ 
+         .congrats-text h1 {
+             font-size: 24px;
+             font-weight: 700;
+             color: #333;
+             margin-right: 8px;
+         }
+ 
+         .congrats-text span.emoji {
+             font-size: 24px;
+         }
+ 
+         p {
+             font-size: 16px;
+             color: #666;
+             line-height: 1.5;
+             margin: 10px 0;
+         }
+ 
+         .prize-text {
+             font-size: 20px;
+             font-weight: 700;
+             color: #007bff;
+             margin: 10px 0 20px;
+         }
+ 
+         .timer-container {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             margin: 30px 0 15px;
+         }
+ 
+         .timer-box {
+             background-color: #ff3b30;
+             color: #fff;
+             font-size: 36px;
+             font-weight: 700;
+             padding: 8px 12px;
+             border-radius: 8px;
+             min-width: 60px;
+             text-align: center;
+             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+         }
+ 
+         .timer-colon {
+             font-size: 36px;
+             color: #ff3b30;
+             font-weight: 700;
+             margin: 0 8px;
+         }
+ 
+         .hurry-text {
+             font-size: 14px;
+             color: #ff3b30;
+             font-weight: 500;
+             margin-top: 10px;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+         }
+ 
+         .hurry-text .fire-emoji {
+             margin-left: 5px;
+             margin-right: 5px;
+         }
+ 
+         .continue-button {
+             background-color: #007bff;
+             color: #fff;
+             border: none;
+             padding: 15px 30px;
+             font-size: 18px;
+             font-weight: 500;
+             border-radius: 50px;
+             width: 100%;
+             cursor: pointer;
+             transition: background-color 0.3s ease, transform 0.3s ease;
+             margin-top: 30px;
+             animation: breathe 2s infinite alternate;
+         }
+ 
+         .continue-button:hover {
+             background-color: #0056b3;
+             transform: scale(1.05);
+         }
+ 
+         @keyframes breathe {
+             0% {
+                 transform: scale(1);
+                 opacity: 1;
+             }
+             100% {
+                 transform: scale(1.03);
+                 opacity: 0.9;
+             }
+         }
+ 
+     </style>
+ </head>
+ <body>
+ 
+     <div class="container">
+         <div class="image-container">
+             <img src="https://i.postimg.cc/vmpk9fRZ/images-2-8.jpg" alt="Win a Prize">
+         </div>
+ 
+         <div class="congrats-text">
+             <h1>Congratulations!</h1>
+             <span class="emoji">&#127881;</span>
+         </div>
+         <p>You have a chance to win.</p>
+         <p class="prize-text">Apple iPhone 16 Pro</p>
+ 
+         <p>You have been selected for a chance to win an Apple iPhone 16 Pro. Register before the timer runs out. The sooner you register, the better your chances of winning!</p>
+ 
+         <div class="timer-container">
+             <div class="timer-box" id="minutes">02</div>
+             <div class="timer-colon">:</div>
+             <div class="timer-box" id="seconds">00</div>
+         </div>
+         <div class="hurry-text">
+             Hurry <span class="fire-emoji">&#128293;</span> before it's over!
+         </div>
+ 
+         <a href="https://www.transictiopool.wiki/click?offer_id=32136&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE" target="_blank" style="text-decoration: none;">
+             <button class="continue-button">Continue</button>
+         </a>
+     </div>
+ 
+     <script>
+         const startingMinutes = 2;
+         let time = startingMinutes * 60;
+ 
+         const minutesEl = document.getElementById('minutes');
+         const secondsEl = document.getElementById('seconds');
+ 
+         setInterval(updateCountdown, 1000);
+ 
+         function updateCountdown() {
+             const minutes = Math.floor(time / 60);
+             let seconds = time % 60;
+ 
+             seconds = seconds < 10 ? '0' + seconds : seconds;
+ 
+             minutesEl.innerText = minutes < 10 ? '0' + minutes : minutes;
+             secondsEl.innerText = seconds;
+             time--;
+ 
+             if (time < 0) {
+                 clearInterval(updateCountdown);
+                 minutesEl.innerText = '00';
+                 secondsEl.innerText = '00';
+                 // Add any logic for when the timer ends here
+             }
+         }
+     </script>
+ 
+ </body>
+ </html>
