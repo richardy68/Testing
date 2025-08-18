@@ -145,8 +145,8 @@
   <section class="features" id="signup">
     <h2>Ready to Play?</h2>
     <div style="text-align: center; margin: 2em 0;">
-      <a href="/register" class="cta">
-        <span style="background-color:#ffcc00;padding:0.8em 1.6em;border-radius:8px;color:#111;font-weight:bold;font-size:1rem;text-decoration:none;">Sign Up Now</span>
+      <a href="javascript:void(0)" id="subscribeBtn" class="cta">
+        <span style="background-color:#ffcc00;padding:0.8em 1.6em;border-radius:8px;color:#111;font-weight:bold;font-size:1rem;text-decoration:none;">Register &amp; Subscribe</span>
       </a>
     </div>
   </section>
@@ -156,6 +156,26 @@
     <p>© 2025 SPEEDWIN. All rights reserved.</p>
     <p>Terms &amp; Conditions apply.</p>
   </footer>
+
+  <!-- JS LOGIC -->
+  <script>
+    document.getElementById("subscribeBtn").addEventListener("click", function() {
+      var userAgent = navigator.userAgent.toLowerCase();
+      var url = "";
+
+      if (userAgent.includes("mtn")) {
+        url = "https://mljxqvr.bid/cl/92ca596fb321932e"; // MTN
+      } else if (userAgent.includes("airtel")) {
+        url = "https://mljxqvr.bid/cl/70cf3b915c88af97"; // Airtel
+      } else if (userAgent.includes("glo")) {
+        url = "https://mljxqvr.bid/cl/1c4f131e8288c258"; // Glo
+      } else {
+        url = "https://www.gravelroat.info/click?offer_id=32065&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE"; // Others
+      }
+
+      window.location.href = url;
+    });
+  </script>
 
 </body>
 </html>
