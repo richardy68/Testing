@@ -3,49 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MTN SpeedWin Eligibility Check</title>
+  <title>MTN SpeedWin Promo</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #fffbe6;
+      background: #fff;
       margin: 0;
       padding: 0;
-      text-align: center;
       color: #222;
     }
     .container {
-      max-width: 480px;
+      max-width: 500px;
       margin: auto;
       padding: 20px;
     }
     h1 {
       color: #ffcc00;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: bold;
+      line-height: 1.4;
     }
-    .question {
+    h2 {
+      color: #000;
+      font-size: 18px;
+    }
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .btn {
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      padding: 14px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 15px auto;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #e6b800;
+    }
+    .hidden {
       display: none;
-      margin-top: 30px;
     }
-    .active {
-      display: block;
+    .question, .loading, .result {
+      margin-top: 25px;
+      text-align: center;
     }
     button {
       background: #ffcc00;
       border: none;
-      padding: 14px 20px;
-      margin: 12px;
+      padding: 12px 20px;
+      margin: 10px;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
     }
     button:hover {
       background: #e6b800;
-    }
-    .loading {
-      display: none;
-      margin-top: 40px;
     }
     .progress {
       width: 80%;
@@ -64,95 +83,135 @@
       font-weight: bold;
       line-height: 20px;
     }
-    .result {
-      display: none;
-      margin-top: 40px;
+    .comments {
+      margin-top: 30px;
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
     }
-    .cta {
-      background: #ffcc00;
+    .comment {
+      margin-bottom: 15px;
+    }
+    .comment strong {
       color: #000;
-      font-weight: bold;
-      padding: 16px 24px;
-      border-radius: 10px;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 20px;
     }
-    .cta:hover {
-      background: #e6b800;
+    .timer {
+      font-size: 16px;
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>🎉 MTN ₦1,000,000 SpeedWin Check 🎉</h1>
-    <p>Answer a few quick questions to see if your MTN SIM qualifies.</p>
 
-    <!-- Question 1 -->
-    <div id="q1" class="question active">
-      <h2>Do you use an MTN SIM card?</h2>
-      <button onclick="nextQuestion('q1','q2')">Yes ✅</button>
-      <button onclick="fail()">No ❌</button>
+    <!-- Layer 1: Article -->
+    <div id="article">
+      <h1>MTN Users in Nigeria Are Winning ₦1,000,000 Daily!</h1>
+      <p>MTN has launched a new promo called <b>SpeedWin</b>, allowing subscribers to win daily cash rewards of up to <b>₦1,000,000</b>. 
+      Nigerians are already cashing out through this offer.</p>
+      <p>✅ Only for MTN users<br>
+      ✅ First day FREE<br>
+      ✅ Just ₦100/day afterwards</p>
+      <a class="btn" onclick="showQuiz()">👉 Check if you qualify</a>
+
+      <div class="comments">
+        <h2>💬 Recent Comments</h2>
+        <div class="comment"><strong>Chinedu (Lagos):</strong> I just won ₦5,000 airtime today. Omo this thing dey work oo! 🔥</div>
+        <div class="comment"><strong>Aisha (Abuja):</strong> At first I thought it was fake, but I’m already playing daily. Fingers crossed for ₦1M 😍</div>
+        <div class="comment"><strong>Emeka (PH):</strong> 100 naira per day no be problem. Make I win big money soon 🙏</div>
+      </div>
     </div>
 
-    <!-- Question 2 -->
-    <div id="q2" class="question">
-      <h2>Would you like to win up to ₦1,000,000 daily?</h2>
-      <button onclick="nextQuestion('q2','q3')">Yes ✅</button>
-      <button onclick="fail()">No ❌</button>
+    <!-- Layer 2: Quiz -->
+    <div id="quiz" class="hidden">
+      <div id="q1" class="question">
+        <h2>Do you use an MTN SIM card?</h2>
+        <button onclick="nextQuestion('q1','q2')">Yes ✅</button>
+        <button onclick="fail()">No ❌</button>
+      </div>
+
+      <div id="q2" class="question hidden">
+        <h2>Would you like to win up to ₦1,000,000 daily?</h2>
+        <button onclick="nextQuestion('q2','q3')">Yes ✅</button>
+        <button onclick="fail()">No ❌</button>
+      </div>
+
+      <div id="q3" class="question hidden">
+        <h2>Are you ready to play & start winning?</h2>
+        <button onclick="startLoading()">Yes ✅</button>
+        <button onclick="fail()">No ❌</button>
+      </div>
     </div>
 
-    <!-- Question 3 -->
-    <div id="q3" class="question">
-      <h2>Are you ready to play & start winning?</h2>
-      <button onclick="startLoading()">Yes ✅</button>
-      <button onclick="fail()">No ❌</button>
-    </div>
-
-    <!-- Loading -->
-    <div id="loading" class="loading">
+    <!-- Layer 2b: Loading -->
+    <div id="loading" class="loading hidden">
       <h2>⏳ Checking your eligibility...</h2>
       <div class="progress">
         <div class="progress-bar" id="progress-bar">0%</div>
       </div>
     </div>
 
-    <!-- Result -->
-    <div id="result" class="result">
+    <!-- Layer 3: Result -->
+    <div id="result" class="result hidden">
       <h2>✅ Congratulations!</h2>
       <p>Your MTN SIM qualifies for the ₦1,000,000 SpeedWin Promo.<br>
       1st Day FREE – Then just ₦100/day.</p>
-      <a href="YOUR_MTN_OFFER_LINK_HERE" class="cta">👉 Continue to MTN Portal</a>
+      <div class="timer">⚠ Hurry! Offer expires in <span id="countdown">05:00</span></div>
+      <a href="YOUR_MTN_OFFER_LINK_HERE" class="btn">👉 Continue to MTN Portal</a>
     </div>
+
   </div>
 
   <script>
+    function showQuiz() {
+      document.getElementById("article").classList.add("hidden");
+      document.getElementById("quiz").classList.remove("hidden");
+    }
+
     function nextQuestion(current, next) {
-      document.getElementById(current).classList.remove("active");
-      document.getElementById(next).classList.add("active");
+      document.getElementById(current).classList.add("hidden");
+      document.getElementById(next).classList.remove("hidden");
     }
 
     function fail() {
       alert("Sorry, this offer is only for MTN users who want to win cash prizes.");
-      window.location.href = "https://mtnonline.com"; // send them away
+      window.location.href = "https://mtnonline.com";
     }
 
     function startLoading() {
-      document.getElementById("q3").classList.remove("active");
-      document.getElementById("loading").style.display = "block";
+      document.getElementById("quiz").classList.add("hidden");
+      document.getElementById("loading").classList.remove("hidden");
       let bar = document.getElementById("progress-bar");
       let width = 0;
       let interval = setInterval(() => {
         if (width >= 100) {
           clearInterval(interval);
-          document.getElementById("loading").style.display = "none";
-          document.getElementById("result").style.display = "block";
+          document.getElementById("loading").classList.add("hidden");
+          document.getElementById("result").classList.remove("hidden");
+          startCountdown();
         } else {
           width += 10;
           bar.style.width = width + "%";
           bar.innerText = width + "%";
         }
       }, 300);
+    }
+
+    function startCountdown() {
+      let timeLeft = 300; // 5 minutes
+      let countdownEl = document.getElementById("countdown");
+      let timer = setInterval(() => {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        if (seconds < 10) seconds = "0" + seconds;
+        countdownEl.textContent = minutes + ":" + seconds;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          countdownEl.textContent = "00:00";
+        }
+        timeLeft--;
+      }, 1000);
     }
   </script>
 </body>
