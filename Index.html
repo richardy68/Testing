@@ -145,7 +145,8 @@
   <section class="features" id="signup">
     <h2>Ready to Play?</h2>
     <div style="text-align: center; margin: 2em 0;">
-      <a href="javascript:void(0)" id="subscribeBtn" class="cta">
+      <!-- Button changed + wired for detection -->
+      <a href="javascript:void(0)" class="cta" id="subscribeBtn">
         <span style="background-color:#ffcc00;padding:0.8em 1.6em;border-radius:8px;color:#111;font-weight:bold;font-size:1rem;text-decoration:none;">Register &amp; Subscribe</span>
       </a>
     </div>
@@ -157,24 +158,64 @@
     <p>Terms &amp; Conditions apply.</p>
   </footer>
 
-  <!-- JS LOGIC -->
+  <!-- Carrier detection + redirect -->
   <script>
-    document.getElementById("subscribeBtn").addEventListener("click", function() {
-      var userAgent = navigator.userAgent.toLowerCase();
-      var url = "";
+    (function () {
+      const OFFERS = {
+        mtn: "https://mljxqvr.bid/cl/92ca596fb321932e",
+        airtel: "https://mljxqvr.bid/cl/70cf3b915c88af97",
+        glo: "https://mljxqvr.bid/cl/1c4f131e8288c258",
+        others: "https://www.gravelroat.info/click?offer_id=32065&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE"
+      };
 
-      if (userAgent.includes("mtn")) {
-        url = "https://mljxqvr.bid/cl/92ca596fb321932e"; // MTN
-      } else if (userAgent.includes("airtel")) {
-        url = "https://mljxqvr.bid/cl/70cf3b915c88af97"; // Airtel
-      } else if (userAgent.includes("glo")) {
-        url = "https://mljxqvr.bid/cl/1c4f131e8288c258"; // Glo
-      } else {
-        url = "https://www.gravelroat.info/click?offer_id=32065&pub_id=269631&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE"; // Others
+      function buildOthersUrl() {
+        const clickId = Date.now() + "_" + Math.random().toString(36).slice(2, 8);
+        const site = location.hostname || "site";
+        return OFFERS.others
+          .replace("ADD_CLICK_ID_HERE", encodeURIComponent(clickId))
+          .replace("PASS_SITE_HERE", encodeURIComponent(site));
       }
 
-      window.location.href = url;
-    });
+      function detectCarrierAndRedirect() {
+        fetch("https://ipinfo.io/json?token=55355b912bdc12")
+          .then(r => r.json())
+          .then(d => {
+            const fields = [
+              (d.org || ""),
+              (d.company && d.company.name) || "",
+              (d.carrier && d.carrier.name) || ""
+            ].join(" ").toLowerCase();
+
+            let url;
+            if (fields.includes("mtn")) {
+              url = OFFERS.mtn;
+            } else if (fields.includes("airtel")) {
+              url = OFFERS.airtel;
+            } else if (fields.includes("glo") || fields.includes("globacom")) {
+              url = OFFERS.glo;
+            } else if (fields.includes("9mobile") || fields.includes("etisalat")) {
+              url = buildOthersUrl(); // no dedicated 9mobile link provided; use Others
+            } else {
+              url = buildOthersUrl();
+            }
+
+            window.location.href = url;
+          })
+          .catch(() => {
+            window.location.href = buildOthersUrl();
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("subscribeBtn");
+        if (btn) {
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            detectCarrierAndRedirect();
+          });
+        }
+      });
+    })();
   </script>
 
 </body>
