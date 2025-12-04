@@ -8,19 +8,25 @@
     body, html {
       margin: 0;
       padding: 0;
-      height: 100%; /* Important for vertical centering */
+      height: 100%;
       font-family: Arial, sans-serif;
-      background-color: #111; /* Consistent dark background */
-      color: #fff; /* Consistent white text */
+      background-color: #111; /* Consistent main background */
+      color: #fff;
       display: flex;
       justify-content: center;
-      align-items: center; /* Center content vertically and horizontally */
+      align-items: center;
       text-align: center;
     }
-    .container {
+    
+    /* NEW: The padded box style */
+    .padded-box {
       max-width: 350px;
       padding: 2rem;
+      background: #1a1a1a; /* Matches the feature/step boxes on the landing page */
+      border-radius: 8px; /* Consistent rounded corners */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Optional: Adds a subtle lift/depth */
     }
+
     h1 {
       font-size: 2.2rem;
       margin-bottom: 0.5rem;
@@ -30,7 +36,8 @@
       margin-bottom: 2rem;
       line-height: 1.5;
     }
-    /* Style the CTA button exactly like the landing page */
+
+    /* Consistent CTA button styling */
     .cta-button {
       display: inline-block;
       background-color: #ffcc00; /* Primary action color */
@@ -49,7 +56,7 @@
 </head>
 <body>
 
-  <div class="container">
+  <div class="padded-box">
     <h1>Congratulations 👏</h1>
     <p>
       You have been given **free ₦100** to start playing when you Register.<br><br>
@@ -60,3 +67,4 @@
 
 </body>
 </html>
+y
