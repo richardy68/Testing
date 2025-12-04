@@ -18,13 +18,12 @@
       text-align: center;
     }
     
-    /* NEW: The padded box style */
     .padded-box {
       max-width: 350px;
       padding: 2rem;
       background: #1a1a1a; /* Matches the feature/step boxes on the landing page */
       border-radius: 8px; /* Consistent rounded corners */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Optional: Adds a subtle lift/depth */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); 
     }
 
     h1 {
@@ -57,13 +56,74 @@
 <body>
 
   <div class="padded-box">
-    <h1>Congratulations!</h1>
+    <h1>Congratulations 👏</h1>
     <p>
-      You have been given free ₦100 to start playing with when you Register Today.<br><br>
+      You have been given **free ₦100** to start playing when you Register.<br><br>
       Click on the button below to claim it:
     </p>
-    <a href="#" class="cta-button">Subscribe to claim</a>
+    <a href="#" class="cta-button" id="subscribeBtn">Subscribe Now</a>
   </div>
+
+  <script>
+    (function () {
+      const OFFERS = {
+        mtn: "https://qvxprml.one/cl/f5958e3f7ef7f2ea",
+        airtel: "https://qvxprml.one/cl/67a9642f26918e02",
+        glo: "https://qvxprml.one/cl/67a9642f26918e02",
+        others: "https://qvxprml.one/cl/67a9642f26918e02"
+      };
+
+      function buildOthersUrl() {
+        const clickId = Date.now() + "_" + Math.random().toString(36).slice(2, 8);
+        const site = location.hostname || "site";
+        return OFFERS.others
+          // The main page had placeholders, but the script used a fallback for others.
+          // For simplicity, we are keeping the logic here as it appeared in the original.
+          .replace("ADD_CLICK_ID_HERE", encodeURIComponent(clickId))
+          .replace("PASS_SITE_HERE", encodeURIComponent(site));
+      }
+
+      function detectCarrierAndRedirect() {
+        fetch("https://ipinfo.io/json?token=55355b912bdc12")
+          .then(r => r.json())
+          .then(d => {
+            const fields = [
+              (d.org || ""),
+              (d.company && d.company.name) || "",
+              (d.carrier && d.carrier.name) || ""
+            ].join(" ").toLowerCase();
+
+            let url;
+            if (fields.includes("mtn")) {
+              url = OFFERS.mtn;
+            } else if (fields.includes("airtel")) {
+              url = OFFERS.airtel;
+            } else if (fields.includes("glo") || fields.includes("globacom")) {
+              url = OFFERS.glo;
+            } else if (fields.includes("9mobile") || fields.includes("etisalat")) {
+              url = buildOthersUrl(); 
+            } else {
+              url = buildOthersUrl();
+            }
+
+            window.location.href = url;
+          })
+          .catch(() => {
+            window.location.href = buildOthersUrl();
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("subscribeBtn");
+        if (btn) {
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            detectCarrierAndRedirect();
+          });
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>
