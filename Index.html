@@ -79,6 +79,36 @@
       font-size: 0.9rem;
     }
 
+    /* LOADER CSS STYLES */
+    .loader-container {
+        /* This class will ensure the loader and text fit the original button size */
+        display: inline-block;
+        background-color: #ffcc00;
+        padding: 0.8em 1.6em;
+        border-radius: 8px;
+        color: #111;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    .loader {
+      display: none; /* Hidden by default, shown by JS */
+      border: 4px solid rgba(17, 17, 17, 0.3); /* Light version of the text color */
+      border-top: 4px solid #111; /* Dark spinning part */
+      border-radius: 50%;
+      width: 1.2rem;
+      height: 1.2rem;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    /* END LOADER CSS */
+
     /* TABLET & DESKTOP OPTIMIZATION */
     @media(min-width: 768px) {
       .hero-text h1 { font-size: 2.5rem; }
@@ -140,8 +170,11 @@
   <section class="features" id="signup">
     <h2>Ready to Play?</h2>
     <div style="text-align: center; margin: 2em 0;">
-      <a href="/secondpage" class="cta" style="text-decoration:none;">
-        <span style="background-color:#ffcc00;padding:0.8em 1.6em;border-radius:8px;color:#111;font-weight:bold;font-size:1rem;"> Register Today </span>
+      <a href="#" id="registerCta" class="cta" style="text-decoration:none;">
+        <span class="loader-container">
+            <span class="btn-text">Register Today</span>
+            <span class="loader"></span>
+        </span>
       </a>
     </div>
   </section>
@@ -151,5 +184,29 @@
     <p>Terms &amp; Conditions apply.</p>
   </footer>
 
-  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cta = document.getElementById('registerCta');
+        const btnContainer = cta.querySelector('.loader-container');
+        const originalText = cta.querySelector('.btn-text');
+        const loader = cta.querySelector('.loader');
+
+        cta.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent immediate redirect
+
+            // 1. Disable the button and show the loader
+            cta.style.pointerEvents = 'none'; // Prevent re-clicking
+            originalText.style.display = 'none';
+            loader.style.display = 'block';
+
+            // 2. Set the 5-second timer for redirect
+            setTimeout(() => {
+                // Redirect after the animation delay
+                window.location.href = '/secondpage'; 
+            }, 5000); // 5000 milliseconds = 5 seconds
+        });
+    });
+  </script>
+  
+</body>
 </html>
