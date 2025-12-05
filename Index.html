@@ -20,7 +20,7 @@
       display: block;
     }
 
-    /* CONTENT AFTER BANNER */
+    /* CONTENT AFTER BANNER (Unchanged sections) */
     .hero-text {
       text-align: center;
       padding: 1.5rem 1rem;
@@ -33,6 +33,8 @@
       font-size: 1rem;
       margin-bottom: 1rem;
     }
+    
+    /* Standard CTA styling (used for Play Now link) */
     .hero-text .cta a {
       display: inline-block;
       background-color: #ffcc00;
@@ -48,7 +50,7 @@
       background-color: #e6b800;
     }
 
-    /* FEATURES + HOW IT WORKS */
+    /* FEATURES + HOW IT WORKS (Unchanged) */
     .features, .how-it-works {
       padding: 2rem 1rem;
       max-width: 900px;
@@ -71,7 +73,7 @@
       text-align: center;
     }
 
-    /* FOOTER */
+    /* FOOTER (Unchanged) */
     .footer {
       background: #000;
       padding: 1.5rem;
@@ -79,37 +81,36 @@
       font-size: 0.9rem;
     }
 
-    /* LOADER CSS STYLES */
-    .loader-container {
-        /* This class will ensure the loader and text fit the original button size */
-        display: inline-block;
-        background-color: #ffcc00;
-        padding: 0.8em 1.6em;
-        border-radius: 8px;
-        color: #111;
-        font-weight: bold;
-        font-size: 1rem;
-        cursor: pointer;
+    /* NEW: FULL-PAGE LOADER STYLES */
+    #full-page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(17, 17, 17, 0.9); /* Semi-transparent dark overlay */
+      display: none; /* Hidden by default */
+      justify-content: center;
+      align-items: center;
+      z-index: 9999; /* Ensure it is on top of everything */
     }
 
-    .loader {
-      display: none; /* Hidden by default, shown by JS */
-      border: 4px solid rgba(17, 17, 17, 0.3); /* Light version of the text color */
-      border-top: 4px solid #111; /* Dark spinning part */
+    #full-page-loader .large-spinner {
+      border: 8px solid #333; /* Dark track */
+      border-top: 8px solid #ffcc00; /* Yellow spinning top */
       border-radius: 50%;
-      width: 1.2rem;
-      height: 1.2rem;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
+      width: 60px; /* Large size */
+      height: 60px;
+      animation: spin 1.2s linear infinite;
     }
 
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    /* END LOADER CSS */
+    /* END FULL-PAGE LOADER STYLES */
 
-    /* TABLET & DESKTOP OPTIMIZATION */
+    /* TABLET & DESKTOP OPTIMIZATION (Unchanged) */
     @media(min-width: 768px) {
       .hero-text h1 { font-size: 2.5rem; }
       .hero-text p { font-size: 1.2rem; }
@@ -120,6 +121,10 @@
   </style>
 </head>
 <body>
+
+  <div id="full-page-loader">
+    <div class="large-spinner"></div>
+  </div>
 
   <img src="https://i.postimg.cc/rwvxz04r/SPEEDWINBanner.jpg" alt="SPEEDWIN Banner" class="banner">
 
@@ -171,10 +176,7 @@
     <h2>Ready to Play?</h2>
     <div style="text-align: center; margin: 2em 0;">
       <a href="#" id="registerCta" class="cta" style="text-decoration:none;">
-        <span class="loader-container">
-            <span class="btn-text">Register Today</span>
-            <span class="loader"></span>
-        </span>
+        <span style="background-color:#ffcc00;padding:0.8em 1.6em;border-radius:8px;color:#111;font-weight:bold;font-size:1rem;"> Register Today </span>
       </a>
     </div>
   </section>
@@ -187,17 +189,16 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
         const cta = document.getElementById('registerCta');
-        const btnContainer = cta.querySelector('.loader-container');
-        const originalText = cta.querySelector('.btn-text');
-        const loader = cta.querySelector('.loader');
+        const loader = document.getElementById('full-page-loader');
 
         cta.addEventListener('click', function(e) {
             e.preventDefault(); // Prevent immediate redirect
 
-            // 1. Disable the button and show the loader
-            cta.style.pointerEvents = 'none'; // Prevent re-clicking
-            originalText.style.display = 'none';
-            loader.style.display = 'block';
+            // 1. Show the full-page loader
+            loader.style.display = 'flex';
+            
+            // Optional: Disable the button visually as well
+            cta.style.pointerEvents = 'none';
 
             // 2. Set the 5-second timer for redirect
             setTimeout(() => {
